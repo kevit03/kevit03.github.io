@@ -1,9 +1,5 @@
 # Kevin Tang — Portfolio Site
 
-This is a lightweight, interactive portfolio website you can host for free on **GitHub Pages**.
-
-## What you can do
-
 - Add/edit/reorder project cards (with GitHub + optional demo links)
 - Search + sort projects
 - Upload **JPEGs** to a local gallery (images are resized/compressed and stored in your browser)
