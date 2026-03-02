@@ -1,24 +1,12 @@
 const $ = (sel) => document.querySelector(sel);
 
-function nowIso() {
-  return new Date().toISOString();
-}
-
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
-}
-
 function defaultState() {
-  const created = nowIso();
   return {
-    theme: "light",
     projects: [
       {
         id: "1",
         title: "Project One",
-        description: "Replace this sample with your real project.",
-        createdAt: created,
-        updatedAt: created
+        description: "Replace this sample with your real project."
       }
     ]
   };
@@ -121,7 +109,6 @@ function setupGallery() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  setTheme(state.theme);
   renderProjects();
   setupGallery();
 });
