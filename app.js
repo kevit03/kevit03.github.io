@@ -74,15 +74,24 @@ function showImage(index) {
 
   const item = galleryData[index];
 
-  img.classList.remove("is-visible");
+  const newImg = img.cloneNode();
+  newImg.src = item.src;
+  newImg.classList.remove("is-visible");
+
+  img.parentNode.appendChild(newImg);
+
+  requestAnimationFrame(() => {
+    newImg.classList.add("is-visible");
+  });
 
   setTimeout(() => {
-    img.src = item.src;
-    title.textContent = item.title;
-    caption.textContent = item.caption;
-    blog.textContent = item.blog;
-    img.classList.add("is-visible");
-  }, 200);
+    img.remove();
+    newImg.id = "galleryImage";
+  }, 800);
+
+  title.textContent = item.title;
+  caption.textContent = item.caption;
+  blog.textContent = item.blog;
 }
 
 function setupGallery() {
