@@ -884,6 +884,43 @@ function main() {
   rerender();
 }
 
-document.addEventListener("DOMContentLoaded", main);
+// simple gallery slider
+const galleryImages = [
+  {
+    src: "images/photo1.jpg",
+    caption: "Sunset over Manhattan • 2025"
+  },
+  {
+    src: "images/photo2.jpg",
+    caption: "Brooklyn Bridge • 2025"
+  },
+  {
+    src: "images/photo3.jpg",
+    caption: "Street Portrait • 2024"
+  }
+];
+
+let currentIndex = 0;
+
+function updateGallery() {
+  const img = document.getElementById("galleryImage");
+  const cap = document.getElementById("galleryCaption");
+
+  img.src = galleryImages[currentIndex].src;
+  cap.textContent = galleryImages[currentIndex].caption;
+}
+
+document.getElementById("galleryNext")?.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  updateGallery();
+});
+
+document.getElementById("galleryPrev")?.addEventListener("click", () => {
+  currentIndex =
+    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  updateGallery();
+});
+
+document.addEventListener("DOMContentLoaded", updateGallery);
 
 //many bugs 

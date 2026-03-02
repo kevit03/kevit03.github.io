@@ -210,4 +210,43 @@ body{
   .gallery-grid{
     grid-template-columns:1fr;
   }
+
+  .gallery-slider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:40px;
+}
+
+.gallery-slide{
+  max-width:900px;
+  width:100%;
+  text-align:center;
+}
+
+.gallery-slide img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.gallery-caption{
+  margin-top:18px;
+  font-size:15px;
+  color:var(--muted);
+  letter-spacing:0.02em;
+}
+
+.gallery-arrow{
+  background:none;
+  border:none;
+  font-size:28px;
+  cursor:pointer;
+  color:var(--text);
+  transition:opacity .3s ease;
+}
+
+.gallery-arrow:hover{
+  opacity:0.5;
+}
 }
