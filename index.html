@@ -42,23 +42,34 @@
 
 <section id="gallery" class="tab-panel">
   <div class="site-container wide">
+
     <div class="intro">
       <h1>Photography</h1>
       <p>Personal visual archive.</p>
     </div>
 
-      <div class="gallery-slider">
-    <button class="gallery-arrow left" id="galleryPrev">&#8592;</button>
+    <div class="gallery-wrapper">
 
-    <div class="gallery-slide">
-      <img id="galleryImage" src="images/photo1.jpg" alt="Gallery image">
-      <p id="galleryCaption" class="gallery-caption">
-        Photo description • Location • Year
-      </p>
+      <div class="gallery-stage">
+        <img id="galleryImage" class="gallery-image" />
+        <div class="gallery-overlay">
+          <div class="gallery-meta">
+            <div id="galleryTitle" class="gallery-title"></div>
+            <div id="galleryCaption" class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-nav gallery-prev" id="galleryPrev">&#8592;</div>
+        <div class="gallery-nav gallery-next" id="galleryNext">&#8594;</div>
+      </div>
+
+      <div class="gallery-blog">
+        <button id="toggleBlog" class="blog-toggle">Read Notes</button>
+        <div id="galleryBlogText" class="blog-text"></div>
+      </div>
+
     </div>
 
-    <button class="gallery-arrow right" id="galleryNext">&#8594;</button>
-  </div>
   </div>
 </section>
 

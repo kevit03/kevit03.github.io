@@ -900,27 +900,64 @@ const galleryImages = [
   }
 ];
 
+// refined gallery
+
+const galleryData = [
+  {
+    src: "images/photo1.jpg",
+    title: "Evening Silence",
+    caption: "Manhattan • 2025",
+    blog: "I was drawn to the softness of the fading light. The city felt suspended in a quiet pause."
+  },
+  {
+    src: "images/photo2.jpg",
+    title: "Bridge Study",
+    caption: "Brooklyn • 2025",
+    blog: "The geometry here felt deliberate. I waited until a lone subject entered the frame."
+  }
+];
+
 let currentIndex = 0;
 
-function updateGallery() {
-  const img = document.getElementById("galleryImage");
-  const cap = document.getElementById("galleryCaption");
+const imgEl = document.getElementById("galleryImage");
+const titleEl = document.getElementById("galleryTitle");
+const captionEl = document.getElementById("galleryCaption");
+const blogEl = document.getElementById("galleryBlogText");
 
-  img.src = galleryImages[currentIndex].src;
-  cap.textContent = galleryImages[currentIndex].caption;
+function showImage(index){
+  const item = galleryData[index];
+
+  imgEl.classList.remove("is-visible");
+
+  setTimeout(() => {
+    imgEl.src = item.src;
+    titleEl.textContent = item.title;
+    captionEl.textContent = item.caption;
+    blogEl.textContent = item.blog;
+
+    imgEl.classList.add("is-visible");
+  }, 200);
 }
 
-document.getElementById("galleryNext")?.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % galleryImages.length;
-  updateGallery();
+document.getElementById("galleryNext").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % galleryData.length;
+  showImage(currentIndex);
 });
 
-document.getElementById("galleryPrev")?.addEventListener("click", () => {
+document.getElementById("galleryPrev").addEventListener("click", () => {
   currentIndex =
-    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-  updateGallery();
+    (currentIndex - 1 + galleryData.length) % galleryData.length;
+  showImage(currentIndex);
 });
 
-document.addEventListener("DOMContentLoaded", updateGallery);
+document.getElementById("toggleBlog").addEventListener("click", () => {
+  blogEl.classList.toggle("is-open");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  showImage(currentIndex);
+});
+
+
 
 //many bugs 
