@@ -52,15 +52,23 @@ function renderProjects() {
 const galleryData = [
   {
     src: "images/image1.JPG",
-    title: "Evening Silence",
-    caption: "Manhattan • 2025",
-    blog: "I was drawn to the softness of the fading light. The city felt suspended in a quiet pause."
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
+    caption: "Las Vegas, NV • 2025",
   },
   {
     src: "images/image2.JPG",
-    title: "Bridge Study",
-    caption: "Brooklyn • 2025",
-    blog: "The geometry felt deliberate. I waited until a lone subject entered the frame."
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
+    caption: "Zion National Park, UT • 2025",
+  },
+  {
+    src: "images/image3.JPG",
+    title: "Fujifilm 100VI",
+    caption: "Hackensack, NJ• 2026",
+  },
+  {
+    src: "images/image4.JPG",
+    title: "Fujifilm 100VI",
+    caption: "New York City, NY • 2026",
   }
 ];
 
