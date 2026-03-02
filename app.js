@@ -19,6 +19,7 @@ function renderProjects() {
   if (!grid) return;
   grid.innerHTML = "";
 
+  const fragment = document.createDocumentFragment();
   state.projects.forEach(p => {
     const card = document.createElement("div");
     card.className = "project";
@@ -33,8 +34,9 @@ function renderProjects() {
 
     card.appendChild(title);
     card.appendChild(desc);
-    grid.appendChild(card);
+    fragment.appendChild(card);
   });
+  grid.appendChild(fragment);
 }
 
 const galleryData = [
@@ -68,40 +70,43 @@ const galleryData = [
 ];
 
 let currentIndex = 0;
+let galleryElements = {};
 
 function showImage(index) {
-  const img = $("#galleryImage");
-  const title = $("#galleryTitle");
-  const caption = $("#galleryCaption");
-  const blog = $("#galleryBlogText");
-
   const item = galleryData[index];
 
-  img.classList.remove("is-visible");
+  galleryElements.img.classList.remove("is-visible");
+  galleryElements.img.src = item.src;
+  galleryElements.img.classList.add("is-visible");
 
-  setTimeout(() => {
-    img.src = item.src;
-    img.classList.add("is-visible");
-  }, 300);
-
-  title.textContent = item.title;
-  caption.textContent = item.caption;
-  blog.textContent = item.blog;
+  galleryElements.title.textContent = item.title;
+  galleryElements.caption.textContent = item.caption;
+  galleryElements.blog.textContent = item.blog;
 }
 
 function setupGallery() {
-  $("#galleryNext")?.addEventListener("click", () => {
+  galleryElements = {
+    img: $("#galleryImage"),
+    title: $("#galleryTitle"),
+    caption: $("#galleryCaption"),
+    blog: $("#galleryBlogText"),
+    next: $("#galleryNext"),
+    prev: $("#galleryPrev"),
+    toggleBlog: $("#toggleBlog")
+  };
+
+  galleryElements.next?.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % galleryData.length;
     showImage(currentIndex);
   });
 
-  $("#galleryPrev")?.addEventListener("click", () => {
+  galleryElements.prev?.addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
     showImage(currentIndex);
   });
 
-  $("#toggleBlog")?.addEventListener("click", () => {
-    $("#galleryBlogText").classList.toggle("is-open");
+  galleryElements.toggleBlog?.addEventListener("click", () => {
+    galleryElements.blog.classList.toggle("is-open");
   });
 
   showImage(currentIndex);
