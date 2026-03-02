@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Kevin Tang</title>
+    <meta
+      name="description"
+      content="Kevin Tang — projects, GitHub links, and a personal gallery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand" aria-label="Site title">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__text">Kevin Tang</span>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#projects">Projects</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="topbar__actions">
+          <button id="themeToggle" class="button button--ghost" type="button">
+            Toggle theme
+          </button>
+          <a
+            class="button button--primary"
+            id="githubProfileLink"
+            href="https://github.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <p class="kicker">Portfolio</p>
+            <h1 class="hero__title">Kevin Tang</h1>
+            <p class="hero__subtitle">
+              A simple, interactive portfolio you can edit in the browser:
+              add projects with GitHub links and upload JPEGs to a personal
+              gallery (stored locally in your browser).
+            </p>
+
+            <div class="hero__cta">
+              <a class="button button--primary" href="#projects">View projects</a>
+              <button id="openProjectModal" class="button" type="button">
+                Add a project
+              </button>
+            </div>
+
+            <div class="hero__note" role="note">
+              <strong>Tip:</strong> Use <em>Export</em> to back up your projects
+              and gallery (local storage has limits).
+            </div>
+          </div>
+
+          <div class="card hero__card">
+            <div class="hero__stats">
+              <div class="stat">
+                <div class="stat__label">Projects</div>
+                <div id="statProjects" class="stat__value">—</div>
+              </div>
+              <div class="stat">
+                <div class="stat__label">Gallery images</div>
+                <div id="statImages" class="stat__value">—</div>
+              </div>
+              <div class="stat">
+                <div class="stat__label">Last updated</div>
+                <div id="statUpdated" class="stat__value">—</div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="inline-edit">
+              <label class="field">
+                <span class="field__label">GitHub profile URL</span>
+                <div class="field__row">
+                  <input
+                    id="githubProfileInput"
+                    class="input"
+                    type="url"
+                    inputmode="url"
+                    placeholder="https://github.com/your-username"
+                    autocomplete="url"
+                  />
+                  <button id="saveGithubProfile" class="button" type="button">
+                    Save
+                  </button>
+                </div>
+              </label>
+              <p class="muted">
+                This only changes the link in the header on this device/browser.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="section__header">
+            <div>
+              <h2>Projects</h2>
+              <p class="muted">
+                Add projects with GitHub links. Edit, reorder, filter, and export.
+              </p>
+            </div>
+
+            <div class="section__actions">
+              <div class="segmented" role="group" aria-label="Project sort">
+                <button class="segmented__item is-active" data-sort="updated" type="button">
+                  Recently updated
+                </button>
+                <button class="segmented__item" data-sort="title" type="button">
+                  Title
+                </button>
+              </div>
+
+              <button id="exportData" class="button" type="button">Export</button>
+              <label class="button button--ghost">
+                Import
+                <input id="importData" class="sr-only" type="file" accept="application/json" />
+              </label>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <label class="field field--inline">
+              <span class="field__label">Search</span>
+              <input
+                id="projectSearch"
+                class="input"
+                type="search"
+                placeholder="Search projects (title, tags, description)…"
+                autocomplete="off"
+              />
+            </label>
+            <div class="toolbar__right">
+              <button id="resetProjects" class="button button--danger" type="button">
+                Reset sample projects
+              </button>
+            </div>
+          </div>
+
+          <div id="projectGrid" class="grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section section--alt">
+        <div class="container">
+          <div class="section__header">
+            <div>
+              <h2>JPEG gallery</h2>
+              <p class="muted">
+                Upload JPEGs (drag & drop works). Images are resized/compressed and saved locally.
+              </p>
+            </div>
+            <div class="section__actions">
+              <label class="button button--primary">
+                Upload JPEGs
+                <input
+                  id="imagePicker"
+                  class="sr-only"
+                  type="file"
+                  accept="image/jpeg"
+                  multiple
+                />
+              </label>
+              <button id="clearGallery" class="button button--danger" type="button">
+                Clear gallery
+              </button>
+            </div>
+          </div>
+
+          <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Drop JPEGs here or click Upload JPEGs">
+            <div class="dropzone__inner">
+              <div class="dropzone__title">Drop JPEGs here</div>
+              <div class="dropzone__subtitle muted">
+                We’ll compress them to keep storage small.
+              </div>
+            </div>
+          </div>
+
+          <div id="galleryGrid" class="gallery" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <div class="section__header">
+            <div>
+              <h2>Contact</h2>
+              <p class="muted">
+                Quick links you can customize in `index.html` later if you want.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact">
+            <a class="card contact__item" href="mailto:you@example.com">
+              <div class="contact__label">Email</div>
+              <div class="contact__value">you@example.com</div>
+            </a>
+            <a class="card contact__item" href="https://github.com/" target="_blank" rel="noreferrer">
+              <div class="contact__label">GitHub</div>
+              <div class="contact__value">github.com</div>
+            </a>
+            <a class="card contact__item" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <div class="contact__label">LinkedIn</div>
+              <div class="contact__value">linkedin.com</div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="muted">© <span id="year"></span> Kevin Tang</div>
+        <div class="footer__right">
+          <button id="resetAll" class="button button--ghost" type="button">
+            Reset all local data
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Project modal -->
+    <dialog id="projectModal" class="modal">
+      <form id="projectForm" method="dialog" class="modal__panel">
+        <div class="modal__header">
+          <div>
+            <h3 id="projectModalTitle">Add a project</h3>
+            <p class="muted" id="projectModalSubtitle">
+              Save to local storage. You can export a backup anytime.
+            </p>
+          </div>
+          <button class="icon-button" type="button" id="closeProjectModal" aria-label="Close">
+            ✕
+          </button>
+        </div>
+
+        <div class="modal__content">
+          <div class="form-grid">
+            <label class="field">
+              <span class="field__label">Title</span>
+              <input id="pTitle" class="input" name="title" required maxlength="80" />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Tags (comma separated)</span>
+              <input id="pTags" class="input" name="tags" placeholder="web, systems, ml" />
+            </label>
+
+            <label class="field field--full">
+              <span class="field__label">Description</span>
+              <textarea
+                id="pDesc"
+                class="input textarea"
+                name="description"
+                rows="4"
+                maxlength="360"
+                placeholder="What is it? Why is it interesting?"
+              ></textarea>
+            </label>
+
+            <label class="field">
+              <span class="field__label">GitHub repo URL</span>
+              <input
+                id="pGithub"
+                class="input"
+                name="githubUrl"
+                type="url"
+                inputmode="url"
+                placeholder="https://github.com/you/repo"
+              />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Live demo URL (optional)</span>
+              <input
+                id="pDemo"
+                class="input"
+                name="demoUrl"
+                type="url"
+                inputmode="url"
+                placeholder="https://example.com"
+              />
+            </label>
+          </div>
+
+          <div class="modal__hint muted">
+            Keyboard: <kbd>Esc</kbd> closes. You can drag projects to reorder.
+          </div>
+        </div>
+
+        <div class="modal__footer">
+          <button class="button button--ghost" type="button" id="deleteProject">
+            Delete
+          </button>
+          <div class="modal__footerRight">
+            <button class="button" value="cancel" type="button" id="cancelProject">
+              Cancel
+            </button>
+            <button class="button button--primary" value="default" type="submit">
+              Save project
+            </button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Lightbox -->
+    <dialog id="lightbox" class="modal">
+      <form method="dialog" class="modal__panel modal__panel--wide">
+        <div class="modal__header">
+          <div>
+            <h3 id="lightboxTitle">Image</h3>
+            <p class="muted" id="lightboxMeta"></p>
+          </div>
+          <button class="icon-button" type="button" id="closeLightbox" aria-label="Close">
+            ✕
+          </button>
+        </div>
+        <div class="modal__content modal__content--center">
+          <img id="lightboxImg" class="lightbox__img" alt="" />
+        </div>
+        <div class="modal__footer">
+          <button id="deleteImage" class="button button--danger" type="button">
+            Delete image
+          </button>
+          <div class="modal__footerRight">
+            <button class="button" type="submit">Close</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
