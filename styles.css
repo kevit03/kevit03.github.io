@@ -186,6 +186,7 @@ body{
   object-fit:cover;
   opacity:0;
   transition:opacity 0.8s ease;
+  z-index: 20;
 }
 
 .gallery-image.is-visible{
