@@ -6,7 +6,7 @@ function defaultState() {
       {
         id: "1",
         title: "Project One",
-        description: "Replace this sample with your real project."
+        description: "Replace this sample with project."
       }
     ]
   };
