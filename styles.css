@@ -215,18 +215,19 @@ body{
   font-family:"Playfair Display", serif;
   font-size:28px;
   margin-bottom:6px;
+  color:white
 }
 
 .gallery-caption{
   font-size:15px;
   letter-spacing:0.05em;
   opacity:0.8;
+  color:white
 }
 
 .gallery-nav{
   position:absolute;
   top:50%;
-  transform:translateY(-50%);
   font-size:42px;
   cursor:pointer;
   color:rgba(0,0,0,0.7);
@@ -234,11 +235,14 @@ body{
   user-select:none;
   padding:20px;
   transition:opacity 0.3s ease, transform 0.3s ease;
+  text-shadow:0 4px 18px rgba(0,0,0,0.4);
+  opacity:0;
+  transform:translateY(-50%) scale(0.95);
 }
 
-.gallery-nav:hover{
-  opacity:0.3;
-  transform:translateY(-50%) scale(1.15);
+.gallery-stage:hover .gallery-nav{
+  opacity:0.8;
+  transform:translateY(-50%) scale(1);
 }
 
 .gallery-prev{ left:0; }
