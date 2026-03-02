@@ -5,3 +5,5 @@
 - Upload **JPEGs** to a local gallery (images are resized/compressed and stored in your browser)
 - Export/import a JSON backup (recommended, since browser storage is limited)
 
+Deployed via GitHub Pages.
+
