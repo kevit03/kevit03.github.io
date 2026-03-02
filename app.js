@@ -49,17 +49,15 @@ function renderProjects() {
   });
 }
 
-/* ---------- CURATED GALLERY ---------- */
-
 const galleryData = [
   {
-    src: "images/photo1.jpg",
+    src: "images/image1.JPG",
     title: "Evening Silence",
     caption: "Manhattan • 2025",
     blog: "I was drawn to the softness of the fading light. The city felt suspended in a quiet pause."
   },
   {
-    src: "images/photo2.jpg",
+    src: "images/image2.JPG",
     title: "Bridge Study",
     caption: "Brooklyn • 2025",
     blog: "The geometry felt deliberate. I waited until a lone subject entered the frame."
@@ -105,7 +103,6 @@ function setupGallery() {
   showImage(currentIndex);
 }
 
-/* ---------- INIT ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
   setTheme(state.theme);
