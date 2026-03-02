@@ -203,11 +203,6 @@ body{
   left:40px;
   color:white;
   pointer-events:none;
-  opacity:0;
-  transition:opacity 0.6s ease;
-}
-
-.gallery-stage:hover .gallery-overlay{
   opacity:1;
 }
 
