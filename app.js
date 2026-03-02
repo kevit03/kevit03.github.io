@@ -89,20 +89,12 @@ function showImage(index) {
 
   const item = galleryData[index];
 
-  const newImg = img.cloneNode();
-  newImg.src = item.src;
-  newImg.classList.remove("is-visible");
-
-  img.parentNode.appendChild(newImg);
-
-  requestAnimationFrame(() => {
-    newImg.classList.add("is-visible");
-  });
+  img.classList.remove("is-visible");
 
   setTimeout(() => {
-    img.remove();
-    newImg.id = "galleryImage";
-  }, 800);
+    img.src = item.src;
+    img.classList.add("is-visible");
+  }, 300);
 
   title.textContent = item.title;
   caption.textContent = item.caption;
