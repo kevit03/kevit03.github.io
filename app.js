@@ -83,12 +83,12 @@ let galleryElements = {};
 function showImage(index) {
   const item = galleryData[index];
 
+  galleryElements.img.src = item.src;
   galleryElements.img.classList.remove("is-visible");
   
-  galleryElements.img.addEventListener("transitionend", () => {
-    galleryElements.img.src = item.src;
+  requestAnimationFrame(() => {
     galleryElements.img.classList.add("is-visible");
-  }, { once: true });
+  });
 
   galleryElements.title.textContent = item.title;
   galleryElements.caption.textContent = item.caption;
