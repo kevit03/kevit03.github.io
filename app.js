@@ -59,7 +59,7 @@ function defaultState() {
   return {
     version: 1,
     updatedAt: created,
-    theme: "dark",
+    theme: "light",
     githubProfileUrl: "https://github.com/",
     projects: [
       {
@@ -596,25 +596,74 @@ function renderGallery(state) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "thumb__button";
-    btn.setAttribute("aria-label", `Open image ${img.name || ""}`.trim());
+    btn.setAttribute("aria-label", `Edit details for ${img.title || img.name || "image"}`.trim());
 
     const image = document.createElement("img");
     image.className = "thumb__img";
     image.loading = "lazy";
     image.src = img.dataUrl;
-    image.alt = img.name || "Uploaded JPEG";
+    image.alt = img.title || img.name || "Uploaded JPEG";
     btn.appendChild(image);
 
     const meta = document.createElement("div");
     meta.className = "thumb__meta";
-    const left = document.createElement("div");
-    left.textContent = img.name || "JPEG";
-    const right = document.createElement("div");
-    right.textContent = formatDateShort(img.createdAt);
-    meta.appendChild(left);
-    meta.appendChild(right);
 
-    btn.addEventListener("click", () => window.dispatchEvent(new CustomEvent("openImage", { detail: { id: img.id } })));
+    const title = document.createElement("div");
+    title.className = "thumb__title";
+    title.textContent = img.title || img.name || "Untitled photo";
+    meta.appendChild(title);
+
+    const row1 = document.createElement("div");
+    row1.className = "thumb__metaRow";
+    if (img.location) {
+      const span = document.createElement("span");
+      span.className = "thumb__metaValue";
+      span.textContent = img.location;
+      row1.appendChild(span);
+    }
+    if (img.takenAt) {
+      const span = document.createElement("span");
+      span.className = "thumb__metaValue";
+      span.textContent = img.takenAt;
+      row1.appendChild(span);
+    }
+    if (row1.childNodes.length) meta.appendChild(row1);
+
+    const row2 = document.createElement("div");
+    row2.className = "thumb__metaRow";
+    if (img.camera) {
+      const label = document.createElement("span");
+      label.className = "thumb__metaLabel";
+      label.textContent = "Camera";
+      const val = document.createElement("span");
+      val.className = "thumb__metaValue";
+      val.textContent = img.camera;
+      row2.appendChild(label);
+      row2.appendChild(val);
+    }
+    if (img.settings) {
+      const label = document.createElement("span");
+      label.className = "thumb__metaLabel";
+      label.textContent = row2.childNodes.length ? "•" : "Settings";
+      const val = document.createElement("span");
+      val.className = "thumb__metaValue";
+      val.textContent = img.settings;
+      row2.appendChild(label);
+      row2.appendChild(val);
+    }
+    if (row2.childNodes.length) meta.appendChild(row2);
+
+    if (img.description) {
+      const row3 = document.createElement("div");
+      row3.className = "thumb__metaRow";
+      const val = document.createElement("span");
+      val.className = "thumb__metaValue";
+      val.textContent = img.description;
+      row3.appendChild(val);
+      meta.appendChild(row3);
+    }
+
+    btn.addEventListener("click", () => window.dispatchEvent(new CustomEvent("editImage", { detail: { id: img.id } })));
 
     card.appendChild(btn);
     card.appendChild(meta);
@@ -622,26 +671,34 @@ function renderGallery(state) {
   }
 }
 
-function openLightbox(state, imageId) {
-  const img = state.images.find((x) => x.id === imageId);
-  if (!img) return;
-  $("#lightboxTitle").textContent = img.name || "Image";
-  $("#lightboxMeta").textContent = `${formatDateShort(img.createdAt)} • ${img.width ?? "?"}×${img.height ?? "?"}`;
-  const el = $("#lightboxImg");
-  el.src = img.dataUrl;
-  el.alt = img.name || "Uploaded JPEG";
-  $("#deleteImage").dataset.imageId = imageId;
-  const modal = $("#lightbox");
-  if (typeof modal.showModal === "function") modal.showModal();
-}
-
 function setupGallery(stateRef, rerender) {
-  $("#closeLightbox").addEventListener("click", () => closeDialog("#lightbox"));
+  const modal = $("#imageModal");
+  const form = $("#imageForm");
 
-  window.addEventListener("openImage", (e) => openLightbox(stateRef.get(), e.detail.id));
+  function openImageEditor(imageId) {
+    const img = stateRef.get().images.find((x) => x.id === imageId);
+    if (!img) return;
+
+    form.dataset.imageId = imageId;
+    $("#imagePreview").src = img.dataUrl;
+    $("#imagePreview").alt = img.title || img.name || "Uploaded JPEG";
+    $("#imgTitle").value = img.title || "";
+    $("#imgTakenAt").value = img.takenAt || "";
+    $("#imgLocation").value = img.location || "";
+    $("#imgCamera").value = img.camera || "";
+    $("#imgSettings").value = img.settings || "";
+    $("#imgDescription").value = img.description || "";
+
+    if (typeof modal.showModal === "function") modal.showModal();
+  }
+
+  $("#closeImageModal").addEventListener("click", () => closeDialog("#imageModal"));
+  $("#cancelImage").addEventListener("click", () => closeDialog("#imageModal"));
+
+  window.addEventListener("editImage", (e) => openImageEditor(e.detail.id));
 
   $("#deleteImage").addEventListener("click", () => {
-    const id = $("#deleteImage").dataset.imageId;
+    const id = form.dataset.imageId;
     if (!id) return;
     const ok = confirm("Delete this image?");
     if (!ok) return;
@@ -649,7 +706,7 @@ function setupGallery(stateRef, rerender) {
     state.images = state.images.filter((x) => x.id !== id);
     saveState(state);
     stateRef.set(state);
-    closeDialog("#lightbox");
+    closeDialog("#imageModal");
     toast("Image deleted.");
     rerender();
   });
@@ -683,6 +740,12 @@ function setupGallery(stateRef, rerender) {
           width,
           height,
           createdAt: nowIso(),
+          title: "",
+          takenAt: "",
+          location: "",
+          camera: "",
+          settings: "",
+          description: "",
         };
 
         state.images.unshift(next);
@@ -748,6 +811,28 @@ function setupGallery(stateRef, rerender) {
     saveState(state);
     stateRef.set(state);
     toast("Gallery cleared.");
+    rerender();
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const id = form.dataset.imageId;
+    if (!id) return;
+    const state = stateRef.get();
+    const img = state.images.find((x) => x.id === id);
+    if (!img) return;
+
+    img.title = $("#imgTitle").value.trim();
+    img.takenAt = $("#imgTakenAt").value.trim();
+    img.location = $("#imgLocation").value.trim();
+    img.camera = $("#imgCamera").value.trim();
+    img.settings = $("#imgSettings").value.trim();
+    img.description = $("#imgDescription").value.trim();
+
+    saveState(state);
+    stateRef.set(state);
+    toast("Image details saved.");
+    closeDialog("#imageModal");
     rerender();
   });
 }

@@ -172,9 +172,9 @@
         <div class="container">
           <div class="section__header">
             <div>
-              <h2>JPEG gallery</h2>
+              <h2>Photo series</h2>
               <p class="muted">
-                Upload JPEGs (drag & drop works). Images are resized/compressed and saved locally.
+                A simple photo wall. Upload JPEGs, then add a title, where and when it was taken, and your camera specs.
               </p>
             </div>
             <div class="section__actions">
@@ -332,27 +332,69 @@
       </form>
     </dialog>
 
-    <!-- Lightbox -->
-    <dialog id="lightbox" class="modal">
-      <form method="dialog" class="modal__panel modal__panel--wide">
+    <!-- Image details / gallery modal -->
+    <dialog id="imageModal" class="modal">
+      <form id="imageForm" method="dialog" class="modal__panel modal__panel--wide">
         <div class="modal__header">
           <div>
-            <h3 id="lightboxTitle">Image</h3>
-            <p class="muted" id="lightboxMeta"></p>
+            <h3 id="imageModalTitle">Image details</h3>
+            <p class="muted" id="imageModalSubtitle">
+              Describe the photo: where and when it was taken, and how you shot it.
+            </p>
           </div>
-          <button class="icon-button" type="button" id="closeLightbox" aria-label="Close">
+          <button class="icon-button" type="button" id="closeImageModal" aria-label="Close">
             ✕
           </button>
         </div>
-        <div class="modal__content modal__content--center">
-          <img id="lightboxImg" class="lightbox__img" alt="" />
+        <div class="modal__content">
+          <div class="form-grid">
+            <div class="field">
+              <span class="field__label">Preview</span>
+              <img id="imagePreview" class="lightbox__img" alt="" />
+            </div>
+            <div class="field">
+              <span class="field__label">Title</span>
+              <input id="imgTitle" class="input" maxlength="80" placeholder="Series or photo title" />
+            </div>
+            <label class="field">
+              <span class="field__label">Taken (date & time)</span>
+              <input id="imgTakenAt" class="input" maxlength="80" placeholder="e.g. 2026-03-02 18:42" />
+            </label>
+            <label class="field">
+              <span class="field__label">Location</span>
+              <input id="imgLocation" class="input" maxlength="120" placeholder="City, country or place name" />
+            </label>
+            <label class="field">
+              <span class="field__label">Camera</span>
+              <input id="imgCamera" class="input" maxlength="80" placeholder="Body and lens" />
+            </label>
+            <label class="field">
+              <span class="field__label">Settings</span>
+              <input id="imgSettings" class="input" maxlength="80" placeholder="e.g. 1/250 • f/2.8 • ISO 400" />
+            </label>
+            <label class="field field--full">
+              <span class="field__label">Notes / description</span>
+              <textarea
+                id="imgDescription"
+                class="input textarea"
+                rows="4"
+                maxlength="360"
+                placeholder="What’s the story behind this shot?"
+              ></textarea>
+            </label>
+          </div>
         </div>
         <div class="modal__footer">
           <button id="deleteImage" class="button button--danger" type="button">
             Delete image
           </button>
           <div class="modal__footerRight">
-            <button class="button" type="submit">Close</button>
+            <button class="button" type="button" id="cancelImage">
+              Cancel
+            </button>
+            <button class="button button--primary" type="submit">
+              Save details
+            </button>
           </div>
         </div>
       </form>
