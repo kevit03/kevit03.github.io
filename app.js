@@ -54,21 +54,28 @@ const galleryData = [
     src: "images/image1.JPG",
     title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
     caption: "Las Vegas, NV • 2025",
+    blog: "testing"
   },
   {
     src: "images/image2.JPG",
     title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
     caption: "Zion National Park, UT • 2025",
+    blog: "testing"
+
   },
   {
     src: "images/image3.JPG",
     title: "Fujifilm 100VI",
     caption: "Hackensack, NJ• 2026",
+    blog: "testing"
+
   },
   {
     src: "images/image4.JPG",
     title: "Fujifilm 100VI",
     caption: "New York City, NY • 2026",
+    blog: "testing"
+
   }
 ];
 
