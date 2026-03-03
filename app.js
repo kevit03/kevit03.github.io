@@ -289,8 +289,23 @@ function setupGalleryModeSwitch() {
   });
 }
 
+function randomizeSnapshots() {
+  const snapshotImgs = $$(".work-photo img");
+  if (!snapshotImgs.length) return;
+
+  const sources = galleryData.map(item => item.src);
+  const shuffled = [...sources].sort(() => Math.random() - 0.5);
+
+  snapshotImgs.forEach((img, index) => {
+    if (shuffled[index]) {
+      img.src = shuffled[index];
+    }
+  });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   setupGallery();
+  randomizeSnapshots();
 });
