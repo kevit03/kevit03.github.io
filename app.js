@@ -95,7 +95,7 @@ const galleryData = [
   {
     src: "images/image4.JPG",
     title: "Fujifilm 100VI",
-    caption: "New York City, NY • 2026",
+    caption: "Manhattan, NY • 2026",
     blog: "Rosetta Bakery"
 
     
@@ -105,6 +105,45 @@ const galleryData = [
     title: "Fujifilm 100VI",
     caption: "Secaucus, NJ• 2026",
     blog: "S/O Chris Kim for being the subject"
+
+  }
+  ,
+    {
+    src: "images/image6.JPG",
+    title: "Fujifilm 100VI",
+    caption: "Manhattan, NY • 2026",
+    blog: "Pianist in Washington Square Park in the Snow"
+
+  }
+  ,
+    {
+    src: "images/image7.JPG",
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS ",
+    caption: "Grand Canyon, NV • 2025",
+    blog: "Hard to believe this was carved by a river."
+
+  }
+  ,
+    {
+    src: "images/image8.JPG",
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
+    caption: "Las Vegas, NJ • 2025",
+    blog: "Tended to by a gardenist"
+
+  }
+  ,
+    {
+    src: "images/image9.JPG",
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS",
+    caption: "Bronx, NY • 2026",
+    blog: "A human moment from a gorilla"
+
+  },
+  {
+    src: "images/image10.JPG",
+    title: "Fujifilm 100VI",
+    caption: "Hackensack, NJ • 2026",
+    blog: "Some of the best burgers in NJ with a retro vibe"
 
   }
 ];
