@@ -15,7 +15,7 @@
 
 <header class="site-header">
   <div class="site-container header-inner">
-    <div class="site-logo">Kevin Tang</div>
+    <button class="site-logo" id="siteLogo">Kevin Tang</button>
 
     <nav class="site-nav">
       <button class="nav-link is-active" data-tab="projects">Work</button>
@@ -31,11 +31,87 @@
   <div class="site-container">
     <div class="intro">
       <h1>Selected Work</h1>
-      <p>Computer Science / Data Science </p>
-      <p>Sophomore at NYU CAS (Class of 2028) </p>
+      <p>Computer Science / Data Science</p>
+      <p>Sophomore at NYU CAS (Class of 2028)</p>
     </div>
 
-    <div id="projectGrid" class="project-grid"></div>
+    <div class="work-layout">
+      <div>
+        <div class="work-section-title">Experience</div>
+        <div class="experience-list">
+          <article class="experience-item">
+            <h2 class="experience-role">Tech Lead – Biokind</h2>
+            <div class="experience-meta">Plainview, NY · Sep 2025 – Present</div>
+            <div class="experience-desc">
+              <ul>
+                <li>Designed an ETL workflow to clean over 14,000 entries of donation data and standardized demographic data from CSV files using Python Pandas.</li>
+                <li>Deployed a Streamlit-based analytics dashboard using Geopy and Matplotlib visualizations for Riverkeepers' Hudson River cleanup initiatives to analyze environmental and marketing data.</li>
+                <li>Containerized and deployed the analytics platform using Docker.</li>
+                <li>Directed a 5-person engineering team on end-to-end project execution, translating client requirements into technical progress updates.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <h2 class="experience-role">Robotics Research Assistant – Purdue Undergraduate Research</h2>
+            <div class="experience-meta">West Lafayette, IN · Sep 2024 – Jul 2025</div>
+            <div class="experience-desc">
+              <ul>
+                <li>Deployed mobile manipulation functionality for a Mobile ALOHA robot using ROS and Python in Gazebo to simulate tasks before deployment on the physical robot.</li>
+                <li>Built a data pipeline to process voice commands and integrate with R-CNN–based object detection models for target identification, improving data retrieval efficiency by 20%.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <h2 class="experience-role">Chief Social Officer – Purdue Hackers (Indianapolis)</h2>
+            <div class="experience-meta">Indianapolis, IN · Sep 2024 – May 2025</div>
+            <div class="experience-desc">
+              <ul>
+                <li>Led a team of 4 engineers to design and launch a responsive website using HTML, CSS, BEM naming conventions, Flexbox, and media queries.</li>
+                <li>Integrated a Django backend to support dynamic content and server-side functionality.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <h2 class="experience-role">Head of Programming – POBOT (FRC Team 353)</h2>
+            <div class="experience-meta">Aug 2021 – Jun 2024</div>
+            <div class="experience-desc">
+              <ul>
+                <li>Developed a drive subsystem for tank drive and swerve drive using command-based programming in Java and WPILib, enabling controller-based operation over Bluetooth.</li>
+                <li>Optimized the robot’s autonomous navigation by designing a motion-profiling algorithm using trajectory tools and odometry, improving path accuracy and reliability of autonomous tasks.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="work-sidebar">
+        <div>
+          <div class="work-section-title">Highlighted Projects</div>
+          <div id="projectGrid" class="project-grid"></div>
+        </div>
+
+        <div>
+          <div class="work-section-title">Snapshots</div>
+          <div class="work-photos">
+            <div class="work-photo">
+              <img src="images/image1.JPG" alt="Experience photo placeholder 1">
+            </div>
+            <div class="work-photo">
+              <img src="images/image2.JPG" alt="Experience photo placeholder 2">
+            </div>
+            <div class="work-photo">
+              <img src="images/image3.JPG" alt="Experience photo placeholder 3">
+            </div>
+            <div class="work-photo">
+              <img src="images/image4.JPG" alt="Experience photo placeholder 4">
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
     
   </div>
 </section>
@@ -43,29 +119,63 @@
 <section id="gallery" class="tab-panel">
   <div class="site-container wide">
 
-    <div class="intro">
-      <h1>Photography</h1>
-      <p>Personal visual archive.</p>
+    <div class="intro intro-with-controls">
+      <div>
+        <h1>Photography</h1>
+        <p>Personal visual archive.</p>
+      </div>
+      <div class="gallery-mode-switch">
+        <label for="galleryModeSelect">View</label>
+        <select id="galleryModeSelect">
+          <option value="slideshow">Gallery</option>
+          <option value="grid">Grid</option>
+        </select>
+      </div>
     </div>
 
     <div class="gallery-wrapper">
 
-      <div class="gallery-stage">
-        <img id="galleryImage" class="gallery-image" />
-        <div class="gallery-overlay">
-          <div class="gallery-meta">
-            <div id="galleryTitle" class="gallery-title"></div>
-            <div id="galleryCaption" class="gallery-caption"></div>
+      <!-- Slideshow / gallery mode -->
+      <div class="gallery-view gallery-view--slideshow is-active" id="gallerySlideshowView">
+        <div class="gallery-stage">
+          <img id="galleryImage" class="gallery-image" />
+          <div class="gallery-overlay">
+            <div class="gallery-meta">
+              <div id="galleryTitle" class="gallery-title"></div>
+              <div id="galleryCaption" class="gallery-caption"></div>
+            </div>
           </div>
+
+          <div class="gallery-nav gallery-prev" id="galleryPrev">&#8592;</div>
+          <div class="gallery-nav gallery-next" id="galleryNext">&#8594;</div>
         </div>
 
-        <div class="gallery-nav gallery-prev" id="galleryPrev">&#8592;</div>
-        <div class="gallery-nav gallery-next" id="galleryNext">&#8594;</div>
+        <div class="gallery-blog">
+          <button id="toggleBlog" class="blog-toggle">Read Notes</button>
+          <div id="galleryBlogText" class="blog-text"></div>
+        </div>
       </div>
 
-      <div class="gallery-blog">
-        <button id="toggleBlog" class="blog-toggle">Read Notes</button>
-        <div id="galleryBlogText" class="blog-text"></div>
+      <!-- Grid mode -->
+      <div class="gallery-view gallery-view--grid" id="galleryGridView">
+        <div id="galleryGrid" class="photo-grid"></div>
+
+        <div id="photoDetail" class="photo-detail">
+          <button id="photoDetailClose" class="photo-detail__close">&larr; Back to grid</button>
+          <div class="photo-detail__content">
+            <div class="photo-detail__image-wrapper">
+              <img id="photoDetailImage" class="photo-detail__image" />
+            </div>
+            <div class="photo-detail__meta">
+              <h2 id="photoDetailTitle" class="photo-detail__title"></h2>
+              <p id="photoDetailCaption" class="photo-detail__caption"></p>
+              <div class="photo-detail__notes">
+                <h3>Notes</h3>
+                <p id="photoDetailNotes"></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -80,9 +190,30 @@
     </div>
 
     <div class="contact-links">
-      <a href="mailto:tk032606@gmail.com">Email</a>
-      <a href="https://github.com/kevit03" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/kevin-tang1/" target="_blank">LinkedIn</a>
+      <a class="contact-icon" href="mailto:tk032606@gmail.com" aria-label="Email">
+        <span class="contact-icon__circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 2v.2l8 4.8 8-4.8V7l-8 4.8L4 7z"/>
+          </svg>
+        </span>
+        <span class="contact-icon__label">Email</span>
+      </a>
+      <a class="contact-icon" href="https://github.com/kevit03" target="_blank" rel="noreferrer" aria-label="GitHub">
+        <span class="contact-icon__circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .5C5.73.5.5 5.73.5 12.02c0 5.1 3.3 9.43 7.88 10.96.58.11.8-.25.8-.56 0-.28-.01-1.02-.02-2-3.21.7-3.89-1.55-3.89-1.55-.53-1.35-1.29-1.71-1.29-1.71-1.06-.73.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.29-5.26-5.73 0-1.27.45-2.31 1.19-3.12-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11 11 0 0 1 5.79 0c2.2-1.5 3.17-1.19 3.17-1.19.63 1.58.23 2.75.11 3.04.74.81 1.18 1.85 1.18 3.12 0 4.45-2.7 5.44-5.28 5.72.42.37.8 1.1.8 2.22 0 1.6-.02 2.88-.02 3.27 0 .31.21.68.81.56A10.53 10.53 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+          </svg>
+        </span>
+        <span class="contact-icon__label">GitHub</span>
+      </a>
+      <a class="contact-icon" href="https://www.linkedin.com/in/kevin-tang1/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <span class="contact-icon__circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 9h3.96v12H3zM10 9h3.8v1.64h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.66 4.8 6.11V21H18.5v-5.34c0-1.27-.02-2.9-1.77-2.9-1.78 0-2.06 1.39-2.06 2.81V21H10z"/>
+          </svg>
+        </span>
+        <span class="contact-icon__label">LinkedIn</span>
+      </a>
     </div>
   </div>
 </section>
@@ -92,16 +223,32 @@
 <script src="./app.js" defer></script>
 
 <script>
+function activateTab(tabId) {
+  const navButtons = document.querySelectorAll(".nav-link");
+  const panels = document.querySelectorAll(".tab-panel");
+
+  navButtons.forEach(btn => {
+    btn.classList.toggle("is-active", btn.dataset.tab === tabId);
+  });
+
+  panels.forEach(panel => {
+    panel.classList.toggle("is-active", panel.id === tabId);
+  });
+}
+
 document.querySelectorAll(".nav-link").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".nav-link").forEach(b =>
-      b.classList.toggle("is-active", b === btn)
-    );
-    document.querySelectorAll(".tab-panel").forEach(panel =>
-      panel.classList.toggle("is-active", panel.id === btn.dataset.tab)
-    );
+    activateTab(btn.dataset.tab);
   });
 });
+
+const logoButton = document.getElementById("siteLogo");
+if (logoButton) {
+  logoButton.addEventListener("click", () => {
+    activateTab("projects");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 </script>
 
 </body>
