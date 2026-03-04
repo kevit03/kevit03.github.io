@@ -264,7 +264,7 @@ document.querySelectorAll(".nav-link").forEach(btn => {
 
 const logoButton = document.getElementById("siteLogo");
 if (logoButton) {
-  logoButton.addEventListener("click", () => {
+  logoButton.addEvIentListener("click", () => {
     activateTab("projects");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
