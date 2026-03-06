@@ -145,6 +145,36 @@ const galleryData = [
     caption: "Hackensack, NJ • 2026",
     blog: "Some of the best burgers in NJ with a retro vibe"
 
+  }, 
+  {
+    scr: "images/image11.JPG", 
+    title: "IPhone 14 Pro", 
+    caption: "Chicago, Illinois", 
+    blog: "Me and Michael fell asleep in the Apple Store", 
+  }, 
+    {
+    scr: "images/image12.JPG", 
+    title: "IPhone 14 Pro", 
+    caption: "Chicago, Illinois", 
+    blog: "Incredible view in Chicago ft. no wind", 
+  }, 
+    {
+    scr: "images/image13.JPG", 
+    title: "Fujifilm 100VI", 
+    caption: "Mahattan, New York", 
+    blog: "S/O Moses or Moises", 
+  }, 
+    {
+    scr: "images/image14.JPG", 
+    title: "Fujifilm 100VI", 
+    caption: "Mahattan, New York", 
+    blog: "Society Billards w/ FiftyFiveCapital", 
+  }, 
+  {
+    scr: "images/image15.JPG", 
+    title: "Sony A6400 E PZ 18–105 mm F4 G OSS", 
+    caption: "Plainview, New York", 
+    blog: "Beginning of the day long blizzard", 
   }
 ];
 
