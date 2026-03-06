@@ -296,13 +296,13 @@ body{
 .work-photos{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:8px;
+  gap:6px;
 }
 
 .work-photo{
   position:relative;
   overflow:hidden;
-  border-radius:6px;
+  border-radius:4px;
   background:transparent;
   height:150px;
 }
@@ -311,6 +311,7 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
+  border:none;
   transform:scale(1.02);
   transition:transform 1.8s cubic-bezier(.16,.8,.24,1), filter 0.8s ease;
 }
@@ -497,17 +498,19 @@ body{
 .photo-grid{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:12px;
+  gap:6px;
   margin-top:10px;
 }
 
 .photo-tile{
   position:relative;
   overflow:hidden;
-  border-radius:6px;
+  border-radius:4px;
   background:transparent;
   aspect-ratio: 4 / 3;
   cursor:pointer;
+  border:none;
+  outline:none;
   transform:translateY(10px);
   opacity:0;
   animation:fadeUp 0.5s ease forwards;
