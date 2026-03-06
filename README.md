@@ -1,4 +1,4 @@
-# keveit03github.io
+# kevit03github.io
 
 My personal website ft. photography, resume, etc. 
 
