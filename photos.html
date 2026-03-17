@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta
+  name="description"
+  content="Photography by Kevin Tang."
+/>
+<title>Kevin Tang - Photos</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body class="page page-photos" data-page="photos">
+<header class="site-header">
+  <div class="shell header-bar">
+    <a class="brand" href="./index.html">Kevin Tang</a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="site-nav__link" href="./index.html" data-nav="work">Work</a>
+      <a class="site-nav__link" href="./photos.html" data-nav="photos">Photos</a>
+      <a class="site-nav__link" href="./contact.html" data-nav="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-header">
+    <div class="shell">
+      <p class="eyebrow">Photography</p>
+      <h1>Selected frames</h1>
+      <p class="page-header__copy">Travel, city nights, portraits, food, and landscapes.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell gallery-shell">
+      <article class="gallery-spotlight">
+        <div class="gallery-spotlight__media">
+          <img id="galleryImage" class="gallery-image" alt="" />
+        </div>
+
+        <div class="gallery-spotlight__meta">
+          <p class="eyebrow" id="galleryTitle"></p>
+          <p class="gallery-copy" id="galleryCaption"></p>
+          <div class="gallery-meta-line">
+            <span id="galleryLocation"></span>
+            <span class="gallery-meta-line__divider"></span>
+            <span id="galleryCamera"></span>
+          </div>
+          <p class="gallery-copy gallery-copy--small" id="galleryDescription"></p>
+
+          <div class="gallery-controls">
+            <button id="galleryPrev" class="text-button" type="button">Previous</button>
+            <button id="galleryNext" class="text-button" type="button">Next</button>
+          </div>
+        </div>
+      </article>
+
+      <div id="galleryGrid" class="mosaic-grid" aria-label="Photography mosaic"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>Kevin Tang</p>
+    <div class="site-footer__links">
+      <a href="./index.html">Work</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="./app.js" defer></script>
+</body>
+</html>

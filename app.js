@@ -1,41 +1,40 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
-const githubProfileFallback = {
-  publicRepos: 8,
-  followers: 1,
-  following: 8
-};
-
-const pinnedProjectFallbacks = [
+const projectData = [
   {
-    slug: "kevit03/kevit03.github.io",
+    title: "Indra",
+    meta: "Cornell AI Hackathon · Mar 2026",
+    summary: "AI SOP compliance monitoring system for regulated manufacturing workflows.",
+    points: [
+      "Processed production video with Python, YOLOv8, and GPT-4o to detect operational steps.",
+      "Built a rule-based validation engine against structured SOP dependency graphs.",
+      "Generated compliance logs and evidence artifacts for audit workflows."
+    ],
+    githubUrl: "https://github.com/aliabbaskhalfan/Indra-MVP"
+  },
+  {
+    title: "Riverkeepers Donor Intelligence Platform",
+    meta: "Sep 2025 - Dec 2025",
+    summary: "Geospatial analytics platform for donor and engagement data.",
+    points: [
+      "Built interactive donor analysis with Python, Leaflet.js, and JavaScript.",
+      "Designed CSV ingestion and data-normalization workflows for clustered donor distributions.",
+      "Deployed the platform with Streamlit for nonprofit reporting and outreach."
+    ],
+    githubUrl: "https://github.com/aarithundi9/NYCF_BioKind"
+  },
+  {
     title: "kevit03.github.io",
-    description: "This portfolio rebuild. Real photos, sharper art direction, and cleaner personal storytelling.",
-    language: "CSS",
-    liveUrl: "https://kevit03.github.io",
-    ownerLabel: "Personal site"
-  },
-  {
-    slug: "aarithundi9/NYCF_BioKind",
-    title: "NYCF_BioKind",
-    description: "Donation-data cleanup, ETL work, and reporting tools tied to BioKind and Riverkeeper.",
-    language: "Python",
-    ownerLabel: "Client work"
-  },
-  {
-    slug: "aliabbaskhalfan/Indra-MVP",
-    title: "Indra-MVP",
-    description: "AI-powered SOP verification for regulated manufacturing. Built for a health AI hackathon.",
-    language: "TypeScript",
-    ownerLabel: "Hackathon"
-  },
-  {
-    slug: "kevit03/Atlas---RoCathon",
-    title: "Atlas---RoCathon",
-    description: "AI-guided creator screening for RoCathon with product-minded MVP execution.",
-    language: "JavaScript",
-    ownerLabel: "MVP"
+    meta: "Personal site",
+    summary: "Portfolio site built for GitHub Pages with separate work, photo, and contact views.",
+    points: [
+      "Structured as a static multi-page frontend.",
+      "Uses a dedicated photo mosaic page and a separate contact page.",
+      "Written to keep copy simple and presentation direct."
+    ],
+    githubUrl: "https://github.com/kevit03/kevit03.github.io",
+    liveUrl: "https://kevit03.github.io"
   }
 ];
 
@@ -51,194 +50,218 @@ function photo(fileName, details) {
     description: details.description,
     location: details.location,
     camera: details.camera,
-    alt: details.alt
+    alt: details.alt,
+    layout: details.layout || "standard"
   };
 }
 
 const galleryData = [
-  photo("image13.jpg", {
-    title: "Cue Up",
-    caption: "Manhattan, New York",
-    description: "A portrait built around the room, the blue felt, and the pause right before the shot.",
-    location: "Manhattan, NY",
-    camera: "Fujifilm 100VI",
-    alt: "A person lining up a shot at a pool table in a dim billiards hall."
-  }),
-  photo("image7.JPG", {
-    title: "Canyon Light",
-    caption: "Grand Canyon, Arizona",
-    description: "Big scale, broad sky, and enough space for the landscape to feel slow.",
-    location: "Grand Canyon, AZ",
-    camera: "Sony A6400",
-    alt: "A wide view of the Grand Canyon under streaked clouds."
-  }),
-  photo("image11.JPG", {
-    title: "River Sunset",
-    caption: "Chicago, Illinois",
-    description: "A vertical city frame where the light drops between buildings and stretches down the river.",
-    location: "Chicago, IL",
-    camera: "iPhone 14 Pro",
-    alt: "Sunset light reflecting on the Chicago River between downtown buildings."
-  }),
-  photo("image15.JPG", {
-    title: "Blue Hour Blizzard",
-    caption: "Plainview, New York",
-    description: "Everything gets quiet when the snow settles and the color drains down to blue.",
-    location: "Plainview, NY",
-    camera: "Sony A6400",
-    alt: "A snowy suburban street at blue hour with a lamp post in the foreground."
+  photo("image1.JPG", {
+    title: "Desert Welcome",
+    caption: "Las Vegas, Nevada · 2025",
+    description: "Las Vegas sign study.",
+    location: "Las Vegas, NV",
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "The Welcome to Fabulous Las Vegas sign framed by palm trees and storefronts.",
+    layout: "tall"
   }),
   photo("image2.JPG", {
     title: "After Rain",
-    caption: "Zion National Park, Utah",
-    description: "Cloud cover turns the canyon softer and quieter than expected.",
+    caption: "Zion National Park, Utah · 2025",
+    description: "Cloud cover over the canyon after rain.",
     location: "Zion National Park, UT",
-    camera: "Sony A6400",
-    alt: "Mist settling over Zion canyon cliffs after rain."
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "Mist settling over Zion canyon cliffs after rain.",
+    layout: "feature"
+  }),
+  photo("image3.JPG", {
+    title: "Bowling Night",
+    caption: "Hackensack, New Jersey · 2026",
+    description: "Friends at the lane.",
+    location: "Hackensack, NJ",
+    camera: "Fujifilm 100VI",
+    alt: "Friends standing beside bowling lanes and watching a turn in progress.",
+    layout: "wide"
+  }),
+  photo("image4.JPG", {
+    title: "Rosetta Table",
+    caption: "Manhattan, New York · 2026",
+    description: "Rosetta Bakery tabletop frame.",
+    location: "Manhattan, NY",
+    camera: "Fujifilm 100VI",
+    alt: "Pastries from Rosetta Bakery on a tray over a wooden table.",
+    layout: "standard"
+  }),
+  photo("image5.JPG", {
+    title: "Waterfront Pause",
+    caption: "Secaucus, New Jersey · 2026",
+    description: "Night portrait by the water.",
+    location: "Secaucus, NJ",
+    camera: "Fujifilm 100VI",
+    alt: "A person looking out over a waterfront at night while holding a phone.",
+    layout: "wide"
+  }),
+  photo("image6.JPG", {
+    title: "Snow Session",
+    caption: "Manhattan, New York · 2026",
+    description: "Piano in Washington Square Park.",
+    location: "Manhattan, NY",
+    camera: "Fujifilm 100VI",
+    alt: "A pianist playing an upright piano outdoors in a snowy park.",
+    layout: "large"
+  }),
+  photo("image7.JPG", {
+    title: "Canyon Light",
+    caption: "Grand Canyon, Arizona · 2025",
+    description: "Grand Canyon landscape.",
+    location: "Grand Canyon, AZ",
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "A wide view of the Grand Canyon under streaked clouds.",
+    layout: "feature"
+  }),
+  photo("image8.JPG", {
+    title: "Strip Garden",
+    caption: "Las Vegas, Nevada · 2025",
+    description: "Las Vegas Strip garden frame.",
+    location: "Las Vegas, NV",
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "A futuristic building and garden pond on the Las Vegas Strip.",
+    layout: "wide"
+  }),
+  photo("image9.JPG", {
+    title: "Gorilla Study",
+    caption: "Bronx, New York · 2026",
+    description: "Bronx Zoo portrait.",
+    location: "Bronx, NY",
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "Close-up of a gorilla looking toward the camera in an enclosure.",
+    layout: "tall"
   }),
   photo("image10.JPG", {
     title: "White Manna",
-    caption: "Hackensack, New Jersey",
-    description: "Retro neon, overcast dusk, and a frame that stays a little loose on purpose.",
+    caption: "Hackensack, New Jersey · 2026",
+    description: "Neon sign at dusk.",
     location: "Hackensack, NJ",
     camera: "Fujifilm 100VI",
-    alt: "The White Manna Hamburgers neon sign glowing at dusk."
+    alt: "The White Manna Hamburgers neon sign glowing at dusk.",
+    layout: "standard"
+  }),
+  photo("image11.JPG", {
+    title: "River Sunset",
+    caption: "Chicago, Illinois · 2026",
+    description: "Chicago River at sunset.",
+    location: "Chicago, IL",
+    camera: "iPhone 14 Pro",
+    alt: "Sunset light reflecting on the Chicago River between downtown buildings.",
+    layout: "tall"
+  }),
+  photo("image12.JPG", {
+    title: "Chicago Glow",
+    caption: "Chicago, Illinois · 2026",
+    description: "Street-level skyline light.",
+    location: "Chicago, IL",
+    camera: "iPhone 14 Pro",
+    alt: "Chicago street and skyline at sunset with warm light behind the buildings.",
+    layout: "large"
+  }),
+  photo("image13.jpg", {
+    title: "Cue Up",
+    caption: "Manhattan, New York · 2026",
+    description: "Pool hall portrait.",
+    location: "Manhattan, NY",
+    camera: "Fujifilm 100VI",
+    alt: "A person lining up a shot at a pool table in a dim billiards hall.",
+    layout: "tall"
+  }),
+  photo("image14.jpg", {
+    title: "Rack Room",
+    caption: "Manhattan, New York · 2026",
+    description: "Billiards still life.",
+    location: "Manhattan, NY",
+    camera: "Fujifilm 100VI",
+    alt: "Crossed pool cues on a blue billiards table with a racked set of balls in the background.",
+    layout: "standard"
+  }),
+  photo("image15.JPG", {
+    title: "Blue Hour Blizzard",
+    caption: "Plainview, New York · 2026",
+    description: "Snow at blue hour.",
+    location: "Plainview, NY",
+    camera: "Sony A6400 · 18-105 mm",
+    alt: "A snowy suburban street at blue hour with a lamp post in the foreground.",
+    layout: "wide"
   })
 ];
 
 let currentIndex = 0;
 
-function formatDate(dateValue) {
-  if (!dateValue) return "";
+function renderProjects() {
+  const list = $("#projectList");
 
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric"
-    }).format(new Date(dateValue));
-  } catch {
-    return "";
-  }
-}
-
-function renderProjects(projects) {
-  const grid = $("#projectGrid");
-
-  if (!grid) return;
+  if (!list) return;
 
   const fragment = document.createDocumentFragment();
 
-  projects.forEach((project) => {
-    const card = document.createElement("article");
-    card.className = "project";
-
-    const top = document.createElement("div");
-    top.className = "project__top";
-
-    const label = document.createElement("span");
-    label.className = "project__eyebrow";
-    label.textContent = project.ownerLabel || "Project";
-
-    const body = document.createElement("div");
-
-    const title = document.createElement("h3");
-    title.className = "project__title";
-    title.textContent = project.title;
-
-    const desc = document.createElement("p");
-    desc.className = "project__desc";
-    desc.textContent = project.description;
-
-    body.append(title, desc);
-    top.append(label);
-    card.append(top, body);
+  projectData.forEach((project) => {
+    const article = document.createElement("article");
+    article.className = "project-row";
 
     const meta = document.createElement("div");
-    meta.className = "project__meta";
+    meta.className = "project-row__meta";
 
-    const language = project.language || "Repository";
-    const owner = project.slug.split("/")[0];
-    const updated = project.updatedAt ? `Updated ${formatDate(project.updatedAt)}` : "";
+    const titleWrap = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+    const info = document.createElement("p");
+    info.textContent = project.meta;
 
-    [language, owner !== "kevit03" ? `Owner ${owner}` : "Owner kevit03", updated]
-      .filter(Boolean)
-      .forEach((value) => {
-        const pill = document.createElement("span");
-        pill.textContent = value;
-        meta.appendChild(pill);
-      });
+    titleWrap.append(title, info);
+    meta.append(titleWrap);
+
+    const summary = document.createElement("p");
+    summary.className = "project-row__summary";
+    summary.textContent = project.summary;
+
+    const points = document.createElement("ul");
+    points.className = "project-row__points";
+
+    project.points.forEach((point) => {
+      const item = document.createElement("li");
+      item.textContent = point;
+      points.appendChild(item);
+    });
 
     const links = document.createElement("div");
-    links.className = "project__links";
+    links.className = "project-row__links";
 
-    const githubLink = document.createElement("a");
-    githubLink.className = "action";
-    githubLink.href = project.githubUrl;
-    githubLink.target = "_blank";
-    githubLink.rel = "noreferrer";
-    githubLink.textContent = "Repository";
-    links.appendChild(githubLink);
+    const github = document.createElement("a");
+    github.href = project.githubUrl;
+    github.target = "_blank";
+    github.rel = "noreferrer";
+    github.textContent = "Repository";
+    links.appendChild(github);
 
     if (project.liveUrl) {
-      const liveLink = document.createElement("a");
-      liveLink.className = "action";
-      liveLink.href = project.liveUrl;
-      liveLink.target = "_blank";
-      liveLink.rel = "noreferrer";
-      liveLink.textContent = "Live site";
-      links.appendChild(liveLink);
+      const live = document.createElement("a");
+      live.href = project.liveUrl;
+      live.target = "_blank";
+      live.rel = "noreferrer";
+      live.textContent = "Live site";
+      links.appendChild(live);
     }
 
-    card.append(meta, links);
-    fragment.appendChild(card);
+    article.append(meta, summary, points, links);
+    fragment.appendChild(article);
   });
 
-  grid.replaceChildren(fragment);
-}
-
-async function hydratePinnedProjects() {
-  const fallbackProjects = pinnedProjectFallbacks.map((project) => ({
-    ...project,
-    githubUrl: `https://github.com/${project.slug}`
-  }));
-
-  renderProjects(fallbackProjects);
-
-  const results = await Promise.allSettled(
-    pinnedProjectFallbacks.map(async (project) => {
-      const response = await fetch(`https://api.github.com/repos/${project.slug}`);
-
-      if (!response.ok) {
-        throw new Error(`GitHub request failed for ${project.slug}`);
-      }
-
-      const data = await response.json();
-
-      return {
-        ...project,
-        title: data.name || project.title,
-        description: data.description || project.description,
-        language: data.language || project.language,
-        githubUrl: data.html_url || `https://github.com/${project.slug}`,
-        liveUrl: project.liveUrl || data.homepage || "",
-        updatedAt: data.pushed_at || data.updated_at || "",
-        ownerLabel: data.owner?.login === "kevit03" ? project.ownerLabel : "Collaboration"
-      };
-    })
-  );
-
-  const hydratedProjects = results.map((result, index) =>
-    result.status === "fulfilled" ? result.value : fallbackProjects[index]
-  );
-
-  renderProjects(hydratedProjects);
+  list.replaceChildren(fragment);
 }
 
 function updateGalleryTileState(index) {
   $$(".photo-tile").forEach((tile, tileIndex) => {
-    tile.classList.toggle("is-active", tileIndex === index);
-    tile.setAttribute("aria-pressed", String(tileIndex === index));
+    const isActive = tileIndex === index;
+    tile.classList.toggle("is-active", isActive);
+    tile.setAttribute("aria-pressed", String(isActive));
   });
 }
 
@@ -253,9 +276,9 @@ function showImage(index) {
   $("#galleryImage").alt = item.alt;
   $("#galleryTitle").textContent = item.title;
   $("#galleryCaption").textContent = item.caption;
-  $("#galleryDescription").textContent = item.description;
   $("#galleryLocation").textContent = item.location;
   $("#galleryCamera").textContent = item.camera;
+  $("#galleryDescription").textContent = item.description;
 
   updateGalleryTileState(index);
 }
@@ -270,7 +293,7 @@ function renderGalleryGrid() {
   galleryData.forEach((item, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "photo-tile";
+    button.className = `photo-tile photo-tile--${item.layout}`;
     button.setAttribute("aria-label", `${item.title} ${item.caption}`);
     button.setAttribute("aria-pressed", "false");
 
@@ -293,39 +316,30 @@ function renderGalleryGrid() {
 
     meta.append(title, caption);
     button.append(image, meta);
-
     button.addEventListener("click", () => showImage(index));
+
     fragment.appendChild(button);
   });
 
   grid.replaceChildren(fragment);
 }
 
-function setupScrollSpy() {
-  const links = $$(".site-nav__link");
-  const sections = links
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
+function setupGalleryControls() {
+  $("#galleryPrev")?.addEventListener("click", () => {
+    showImage((currentIndex - 1 + galleryData.length) % galleryData.length);
+  });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  $("#galleryNext")?.addEventListener("click", () => {
+    showImage((currentIndex + 1) % galleryData.length);
+  });
+}
 
-      if (!visible?.target?.id) return;
+function setupActiveNav() {
+  const page = document.body.dataset.page;
 
-      links.forEach((link) => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${visible.target.id}`);
-      });
-    },
-    {
-      rootMargin: "-30% 0px -50% 0px",
-      threshold: [0.2, 0.4, 0.6]
-    }
-  );
-
-  sections.forEach((section) => observer.observe(section));
+  $$(".site-nav__link").forEach((link) => {
+    link.classList.toggle("is-active", link.dataset.nav === page);
+  });
 }
 
 function setupIntro() {
@@ -335,7 +349,9 @@ function setupIntro() {
 
   if (!intro || !canvas) return;
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const context = canvas.getContext("2d");
+
   if (!context) return;
 
   let animationId = 0;
@@ -352,7 +368,7 @@ function setupIntro() {
   }
 
   function drawRain() {
-    context.fillStyle = "rgba(4, 7, 12, 0.14)";
+    context.fillStyle = "rgba(5, 8, 13, 0.14)";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.font = `${fontSize}px "IBM Plex Mono"`;
 
@@ -360,9 +376,9 @@ function setupIntro() {
       const text = letters[Math.floor(Math.random() * letters.length)];
       const x = index * fontSize;
 
-      context.fillStyle = index % 11 === 0 ? "#ff6f4d" : "#92ff48";
+      context.fillStyle = index % 9 === 0 ? "#dbe5ba" : "#b6d36d";
       context.fillText(text, x, y);
-      columns[index] = y > canvas.height + Math.random() * 150 ? 0 : y + fontSize;
+      columns[index] = y > canvas.height + Math.random() * 120 ? 0 : y + fontSize;
     });
 
     animationId = window.requestAnimationFrame(drawRain);
@@ -374,47 +390,24 @@ function setupIntro() {
   }
 
   resizeCanvas();
-  drawRain();
+
+  if (!reduceMotion) {
+    drawRain();
+  }
 
   window.addEventListener("resize", resizeCanvas);
   skip?.addEventListener("click", dismissIntro);
-  window.setTimeout(dismissIntro, 2800);
-}
-
-async function hydrateGitHubSignals() {
-  const baseText = $(".quick-facts__item:nth-child(2) strong");
-
-  if (baseText) {
-    baseText.textContent = "Products, data, robotics";
-  }
-
-  try {
-    const response = await fetch("https://api.github.com/users/kevit03");
-
-    if (!response.ok) {
-      throw new Error("GitHub profile request failed");
-    }
-
-    const data = await response.json();
-    const repos = data.public_repos ?? githubProfileFallback.publicRepos;
-    const followers = data.followers ?? githubProfileFallback.followers;
-    const following = data.following ?? githubProfileFallback.following;
-
-    if (baseText) {
-      baseText.textContent = `${repos} repos / ${followers} followers / ${following} following`;
-    }
-  } catch {
-    if (baseText) {
-      baseText.textContent = `${githubProfileFallback.publicRepos} repos / ${githubProfileFallback.followers} followers / ${githubProfileFallback.following} following`;
-    }
-  }
+  window.setTimeout(dismissIntro, reduceMotion ? 200 : 2200);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  setupActiveNav();
   setupIntro();
-  setupScrollSpy();
+  renderProjects();
   renderGalleryGrid();
-  showImage(currentIndex);
-  hydrateGitHubSignals();
-  hydratePinnedProjects();
+  setupGalleryControls();
+
+  if ($("#galleryImage")) {
+    showImage(6);
+  }
 });

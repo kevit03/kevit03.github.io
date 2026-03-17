@@ -5,315 +5,248 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta
   name="description"
-  content="Kevin Tang is an NYU computer science and data science student building products, shooting photography, and shipping clean technical work."
+  content="Kevin Tang is an NYU computer science and data science student with experience in ETL pipelines, analytics platforms, robotics research, and web development."
 />
 <title>Kevin Tang</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
   rel="stylesheet"
 />
 
 <link rel="stylesheet" href="./styles.css" />
 </head>
 
-<body>
+<body class="page page-home" data-page="work">
 <div class="intro-screen" id="introScreen" aria-hidden="true">
   <canvas class="intro-screen__canvas" id="introCanvas"></canvas>
   <div class="intro-screen__copy">
-    <p class="kicker">SYSTEM BOOT</p>
+    <p class="eyebrow">System Boot</p>
     <h1>Kevin Tang</h1>
-    <p>Code. Camera. City nights. Clean builds.</p>
+    <p>Software, data, and photography.</p>
     <button class="intro-screen__skip" id="skipIntro" type="button">Skip intro</button>
   </div>
 </div>
 
 <header class="site-header">
   <div class="shell header-bar">
-    <a class="brand" href="#top">Kevin Tang</a>
+    <a class="brand" href="./index.html">Kevin Tang</a>
 
     <nav class="site-nav" aria-label="Primary">
-      <a class="site-nav__link" href="#work">Work</a>
-      <a class="site-nav__link" href="#soundtrack">Soundtrack</a>
-      <a class="site-nav__link" href="#photos">Photos</a>
-      <a class="site-nav__link" href="#contact">Contact</a>
+      <a class="site-nav__link" href="./index.html" data-nav="work">Work</a>
+      <a class="site-nav__link" href="./photos.html" data-nav="photos">Photos</a>
+      <a class="site-nav__link" href="./contact.html" data-nav="contact">Contact</a>
     </nav>
   </div>
 </header>
 
-<main id="top">
+<main>
   <section class="hero">
     <div class="shell hero-grid">
       <div class="hero-copy">
-        <p class="kicker">NYU CS + Data Science</p>
-        <h1>Built like a dev. Framed like a photographer.</h1>
-        <p class="hero-copy__lede">
-          I make software that works, looks sharp, and feels personal. I like analytics,
-          product builds, hackathon speed, and images that actually say something.
+        <p class="eyebrow">Computer Science / Data Science</p>
+        <h1>Software, data, and research work.</h1>
+        <p class="hero-lede">
+          Computer Science and Data Science student at NYU with experience in ETL pipelines,
+          analytics platforms, robotics research, and full-stack web development.
         </p>
 
-        <div class="hero-actions">
-          <a class="action action--primary" href="mailto:tk032606@gmail.com">Email me</a>
+        <div class="link-cluster">
+          <a class="icon-link" href="mailto:tk032606@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.6" />
+              <path d="m5 7 7 6 7-6" fill="none" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            <span>Email</span>
+          </a>
           <a
-            class="action"
+            class="icon-link"
             href="https://www.linkedin.com/in/kevin-tang1/"
             target="_blank"
             rel="noreferrer"
           >
-            LinkedIn
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 9v8M7 6.5v.1M11 17V9m0 2.3c.6-1.2 1.6-2 3.2-2 2.1 0 3.3 1.4 3.3 4V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>LinkedIn</span>
           </a>
           <a
-            class="action"
+            class="icon-link"
             href="https://github.com/kevit03"
             target="_blank"
             rel="noreferrer"
           >
-            GitHub
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 18c-4 1.2-4-2-6-2m12 4v-3.1c0-.9.3-1.6.8-2.2 2.6-.3 5.2-1.3 5.2-5.8 0-1.3-.5-2.4-1.2-3.2.1-.3.5-1.5-.1-3.1 0 0-1-.3-3.3 1.2A11.7 11.7 0 0 0 12 6.8a11.7 11.7 0 0 0-3 .4C6.7 5.7 5.7 6 5.7 6c-.6 1.6-.2 2.8-.1 3.1C4.9 9.9 4.4 11 4.4 12.3c0 4.5 2.6 5.5 5.2 5.8.5.6.8 1.4.8 2.2V20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <a class="icon-link" href="./assets/kevin-tang-software-resume.pdf" target="_blank" rel="noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 3h7l5 5v13H7z" fill="none" stroke="currentColor" stroke-width="1.6" />
+              <path d="M14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            <span>Resume</span>
           </a>
         </div>
 
-        <div class="quick-facts">
-          <div class="quick-facts__item">
-            <span class="quick-facts__label">Base</span>
-            <strong>New York City</strong>
+        <dl class="fact-list">
+          <div class="fact-list__item">
+            <dt>Now</dt>
+            <dd>New York University, College of Arts and Sciences</dd>
           </div>
-          <div class="quick-facts__item">
-            <span class="quick-facts__label">Focus</span>
-            <strong>Products, data, robotics</strong>
+          <div class="fact-list__item">
+            <dt>Program</dt>
+            <dd>Computer Science / Data Science</dd>
           </div>
-          <div class="quick-facts__item">
-            <span class="quick-facts__label">Off-screen</span>
-            <strong>Photography, playlists, good light</strong>
+          <div class="fact-list__item">
+            <dt>Based</dt>
+            <dd>Plainview, New York</dd>
           </div>
-        </div>
+          <div class="fact-list__item">
+            <dt>Email</dt>
+            <dd>tk032606@gmail.com</dd>
+          </div>
+        </dl>
       </div>
 
-      <div class="hero-stage">
-        <article class="hero-stage__feature">
-          <p class="hero-stage__tag">FIELD NOTES 001</p>
-          <img
-            src="./images/web/image13.jpg"
-            alt="Pool hall portrait photographed by Kevin Tang."
-          />
-        </article>
-
-        <div class="hero-stage__stack">
-          <article class="hero-stage__card hero-stage__card--about">
-            <p class="kicker">About me</p>
-            <p>
-              I care about shipping work that is useful first, but I still want the visuals to
-              feel intentional.
-            </p>
-          </article>
-
-          <article class="hero-stage__card hero-stage__card--film">
-            <p class="kicker">Real photos only</p>
-            <div class="film-strip">
-              <img src="./images/thumbs/image7.jpg" alt="Grand Canyon landscape by Kevin Tang." />
-              <img src="./images/thumbs/image11.jpg" alt="Chicago river sunset by Kevin Tang." />
-              <img src="./images/thumbs/image15.jpg" alt="Snowy neighborhood at blue hour by Kevin Tang." />
-            </div>
-          </article>
-        </div>
-      </div>
+      <figure class="hero-image">
+        <img src="./images/web/image13.jpg" alt="Pool hall portrait photographed by Kevin Tang." />
+        <figcaption>Manhattan, New York</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="identity-strip">
-    <div class="shell identity-strip__grid">
-      <div>
-        <p class="kicker">How I work</p>
-        <p class="identity-strip__line">Fast when I need to be. Clean when it matters. Better when both happen.</p>
-      </div>
-      <div>
-        <p class="kicker">What I like building</p>
-        <p class="identity-strip__line">Dashboards, ETL pipelines, MVPs, research tools, and sites that do not feel generic.</p>
-      </div>
-      <div>
-        <p class="kicker">Why photography stays here</p>
-        <p class="identity-strip__line">It keeps my taste honest. Framing matters in code too.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="work">
+  <section class="section">
     <div class="shell">
       <div class="section-heading">
-        <p class="kicker">Selected work</p>
-        <h2>Things I have built and the kind of problems I want more of.</h2>
-        <p>
-          These are pulled from GitHub and backed by real work in research, client delivery,
-          hackathons, and robotics.
-        </p>
+        <p class="eyebrow">Projects</p>
+        <h2>Selected projects</h2>
       </div>
 
-      <div class="project-grid" id="projectGrid" aria-live="polite"></div>
-
-      <div class="experience-layout">
-        <article class="experience-panel">
-          <div class="section-heading section-heading--tight">
-            <p class="kicker">Experience</p>
-            <h3>From research labs to client-facing builds.</h3>
-          </div>
-
-          <div class="timeline">
-            <article class="timeline__item">
-              <span class="timeline__year">2025 NOW</span>
-              <div>
-                <h4>Tech Lead · Biokind</h4>
-                <p>Built ETL pipelines, cleaned 14k+ donation records, and shipped analytics dashboards for Riverkeeper work.</p>
-              </div>
-            </article>
-
-            <article class="timeline__item">
-              <span class="timeline__year">2024 2025</span>
-              <div>
-                <h4>Robotics Research Assistant · Purdue</h4>
-                <p>Worked on mobile manipulation, voice-command workflows, and object detection for a Mobile ALOHA robot.</p>
-              </div>
-            </article>
-
-            <article class="timeline__item">
-              <span class="timeline__year">2024 2025</span>
-              <div>
-                <h4>Chief Social Officer · Purdue Hackers</h4>
-                <p>Led website work, shipped responsive frontend builds, and handled the mix of fast iteration and public-facing polish.</p>
-              </div>
-            </article>
-
-            <article class="timeline__item">
-              <span class="timeline__year">2021 2024</span>
-              <div>
-                <h4>Head of Programming · POBOT FRC 353</h4>
-                <p>Built drive systems, autonomous tooling, and robot code that had to perform under real constraints.</p>
-              </div>
-            </article>
-          </div>
-        </article>
-
-        <aside class="signal-panel">
-          <p class="kicker">Current signal</p>
-          <ul class="signal-list">
-            <li>Looking for technical work with real ownership.</li>
-            <li>Best at the overlap of engineering, data, and product sense.</li>
-            <li>Still bringing a camera almost everywhere.</li>
-          </ul>
-        </aside>
-      </div>
+      <div class="project-list" id="projectList" aria-live="polite"></div>
     </div>
   </section>
 
-  <section class="section soundtrack" id="soundtrack">
-    <div class="shell soundtrack-grid">
-      <div class="section-heading section-heading--tight">
-        <p class="kicker">Soundtrack</p>
-        <h2>Part record sleeve, part late-night coding desk.</h2>
-        <p>
-          I cut the direct Spotify plug and turned it into something cleaner: a visual section
-          about what music does for the workflow.
-        </p>
-      </div>
+  <section class="section">
+    <div class="shell columns-two">
+      <section>
+        <div class="section-heading section-heading--compact">
+          <p class="eyebrow">Experience</p>
+          <h2>Experience</h2>
+        </div>
 
-      <div class="soundtrack-layout">
-        <article class="record-stage">
-          <div class="record-stage__disc">
-            <div class="record-stage__grooves"></div>
-            <div class="record-stage__label">
-              <span>Kevin Tang</span>
-              <small>LinkedIn / GitHub / Focus Mode</small>
+        <div class="entry-list">
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>Biokind</h3>
+                <p>Tech Lead</p>
+              </div>
+              <span>Sep 2025 - Present</span>
             </div>
-          </div>
-        </article>
+            <ul class="entry__points">
+              <li>Architected a Python ETL pipeline to ingest, clean, and normalize 14k+ donor records from heterogeneous CSV sources.</li>
+              <li>Developed a Streamlit analytics platform with GeoPy and Matplotlib for map-based donor and engagement analysis.</li>
+              <li>Containerized the platform with Docker to reduce environment setup time and support reproducible deployments.</li>
+            </ul>
+          </article>
 
-        <article class="spotify-panel">
-          <div class="spotify-panel__header">
-            <p class="kicker">Listening window</p>
-            <a
-              href="https://open.spotify.com/user/u0d2nlrisa61fou3uoeslyi27?si=41f4f7a479f74d80"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Spotify
-            </a>
-          </div>
-
-          <img
-            class="spotify-panel__shot"
-            src="https://upload.wikimedia.org/wikipedia/commons/6/65/Screenshot_of_spotify_on_ios.png"
-            alt="Spotify mobile app screenshot."
-          />
-
-          <p class="spotify-panel__copy">
-            Playlists are part of how I lock in. This section stays because it is real, just
-            not as a random button anymore.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section photos" id="photos">
-    <div class="shell photos-grid">
-      <div class="section-heading">
-        <p class="kicker">Photography</p>
-        <h2>Photos I took. Cities, trips, food, light, people, timing.</h2>
-        <p>
-          This stays personal on purpose. No generated filler. Just frames that say how I see
-          things.
-        </p>
-      </div>
-
-      <div class="photo-showcase">
-        <article class="photo-showcase__viewer">
-          <img id="galleryImage" class="gallery-image" alt="" />
-
-          <div class="photo-showcase__meta">
-            <div class="photo-showcase__line">
-              <span id="galleryTitle"></span>
-              <span class="photo-showcase__slash">/</span>
-              <span id="galleryCaption"></span>
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>Purdue Undergraduate Research</h3>
+                <p>Robotics Research Assistant</p>
+              </div>
+              <span>Sep 2024 - Jul 2025</span>
             </div>
-            <p id="galleryDescription"></p>
-            <div class="photo-showcase__line photo-showcase__line--small">
-              <span id="galleryLocation"></span>
-              <span class="photo-showcase__slash">/</span>
-              <span id="galleryCamera"></span>
+            <ul class="entry__points">
+              <li>Implemented mobile manipulation capabilities for a Mobile ALOHA robot using ROS, Python, and Gazebo.</li>
+              <li>Designed a robot perception and command-processing pipeline combining voice command parsing with R-CNN object detection.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>Purdue Hackers (Indianapolis)</h3>
+                <p>Chief Social Officer / CSO</p>
+              </div>
+              <span>Sep 2024 - May 2025</span>
             </div>
-          </div>
-        </article>
+            <ul class="entry__points">
+              <li>Led a four-engineer team to launch a responsive website using HTML, CSS, BEM, Flexbox, and media queries.</li>
+              <li>Implemented a Django backend to support dynamic content delivery and server-side functionality.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-        <div id="galleryGrid" class="contact-sheet" aria-label="Photography selection"></div>
-      </div>
-    </div>
-  </section>
+      <section>
+        <div class="section-heading section-heading--compact">
+          <p class="eyebrow">Education & Skills</p>
+          <h2>Background</h2>
+        </div>
 
-  <section class="section contact" id="contact">
-    <div class="shell contact-layout">
-      <div class="section-heading section-heading--tight">
-        <p class="kicker">Contact</p>
-        <h2>Simple is better.</h2>
-        <p>If you want to build something, talk through an idea, or just reach out, this is enough.</p>
-      </div>
+        <div class="entry-list">
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>New York University</h3>
+                <p>Computer Science / Data Science</p>
+              </div>
+              <span>Sep 2025 - Present</span>
+            </div>
+            <ul class="entry__points">
+              <li>GPA: 3.5</li>
+              <li>Coursework: Data Structures, Linear Algebra, Probability and Statistics, Computer Systems, Basic Algorithms, Data Science.</li>
+            </ul>
+          </article>
 
-      <div class="contact-list">
-        <a class="contact-row" href="mailto:tk032606@gmail.com">
-          <span>Email</span>
-          <strong>tk032606@gmail.com</strong>
-        </a>
-        <a class="contact-row" href="https://www.linkedin.com/in/kevin-tang1/" target="_blank" rel="noreferrer">
-          <span>LinkedIn</span>
-          <strong>linkedin.com/in/kevin-tang1</strong>
-        </a>
-        <a class="contact-row" href="https://github.com/kevit03" target="_blank" rel="noreferrer">
-          <span>GitHub</span>
-          <strong>github.com/kevit03</strong>
-        </a>
-      </div>
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>Purdue University</h3>
+                <p>Computer Science</p>
+              </div>
+              <span>Aug 2024 - May 2025</span>
+            </div>
+            <ul class="entry__points">
+              <li>GPA: 3.7</li>
+              <li>Coursework: OOP, Linux/Unix tools, Discrete Mathematics, Programming in C.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry__meta">
+              <div>
+                <h3>Technical Skills</h3>
+                <p>Languages, frameworks, libraries, tools</p>
+              </div>
+            </div>
+            <ul class="entry__points">
+              <li>Python, Java, SQL, HTML, C, CSS, ROS</li>
+              <li>Django, Pandas, Matplotlib, Power BI, TensorFlow, PyTorch, Selenium</li>
+              <li>Linux, Unix, Microsoft Office</li>
+            </ul>
+          </article>
+        </div>
+      </section>
     </div>
   </section>
 </main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>Kevin Tang</p>
+    <div class="site-footer__links">
+      <a href="./photos.html">Photos</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
 
 <script src="./app.js" defer></script>
 </body>
