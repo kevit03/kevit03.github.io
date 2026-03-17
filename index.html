@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta
+  name="description"
+  content="Kevin Tang is a computer science and data science student at NYU building analytical products, hackathon MVPs, and a photography-forward portfolio."
+/>
+<title>Kevin Tang</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="site-container header-inner">
+    <button class="site-logo" id="siteLogo" type="button">Kevin Tang</button>
+
+    <nav class="site-nav" aria-label="Primary">
+      <button class="nav-link is-active" type="button" data-tab="projects">Work</button>
+      <button class="nav-link" type="button" data-tab="gallery">Photography</button>
+      <button class="nav-link" type="button" data-tab="contact">Contact</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="projects" class="tab-panel is-active">
+    <div class="site-container wide">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Computer Science • Data Science • Photography</p>
+          <h1>Building useful software with a clean eye for detail.</h1>
+          <p class="hero-lede">
+            Sophomore at NYU CAS (Class of 2028), working across analytics, product MVPs,
+            and interfaces that stay clear under pressure.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button--primary"
+              href="https://github.com/kevit03"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open GitHub
+            </a>
+            <button class="button button--secondary" type="button" data-open-tab="gallery">
+              Open photography
+            </button>
+          </div>
+        </div>
+
+        <aside class="profile-panel">
+          <div class="profile-card">
+            <img
+              id="profileAvatar"
+              class="profile-card__avatar"
+              src="https://avatars.githubusercontent.com/u/74779238?v=4"
+              alt="Kevin Tang GitHub avatar"
+            />
+
+            <div class="profile-card__body">
+              <p class="profile-card__label">Live profile</p>
+              <h2 class="profile-card__name" id="profileName">Kevin Tang</h2>
+              <p class="profile-card__bio" id="profileBio">
+                Sophomore CS and DS @ New York University
+              </p>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="stat-card">
+              <span class="stat-card__value" id="profileRepos">8</span>
+              <span class="stat-card__label">Public repos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value" id="profileFollowers">1</span>
+              <span class="stat-card__label">Followers</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__value" id="profileFollowing">8</span>
+              <span class="stat-card__label">Following</span>
+            </div>
+          </div>
+
+          <div class="presence-card">
+            <div>
+              <p class="presence-card__label">Elsewhere</p>
+              <p class="presence-card__text">
+                GitHub for builds, LinkedIn for background, and Spotify for the soundtrack
+                behind most work sessions.
+              </p>
+            </div>
+
+            <div class="presence-card__links">
+              <a href="https://github.com/kevit03" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/kevin-tang1/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a
+                href="https://open.spotify.com/user/u0d2nlrisa61fou3uoeslyi27?si=41f4f7a479f74d80"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Spotify
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="overview-grid">
+        <article class="overview-card">
+          <p class="overview-card__eyebrow">Focus</p>
+          <h2>Data products with clear interfaces.</h2>
+          <p>
+            ETL pipelines, analytics dashboards, and product builds that feel structured from
+            the first interaction.
+          </p>
+        </article>
+
+        <article class="overview-card">
+          <p class="overview-card__eyebrow">Current lane</p>
+          <h2>Research, hackathons, and production-minded MVPs.</h2>
+          <p>
+            Moving comfortably between robotics, hackathon shipping speed, and tools that
+            need to be useful outside a demo.
+          </p>
+        </article>
+
+        <article class="overview-card">
+          <p class="overview-card__eyebrow">Personal edge</p>
+          <h2>Photography keeps the work visually disciplined.</h2>
+          <p>
+            Framing, rhythm, and negative space carry over into how pages, dashboards, and
+            project stories get assembled.
+          </p>
+        </article>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Pinned Projects</p>
+          <h2>Linked straight from GitHub.</h2>
+        </div>
+        <p class="section-copy">
+          Only the repositories pinned on your GitHub profile show up here, with live links
+          and current metadata when the GitHub API is available.
+        </p>
+      </div>
+
+      <div id="projectGrid" class="project-grid" aria-live="polite"></div>
+
+      <div class="work-layout">
+        <section>
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">Experience</p>
+              <h2>Work that ranges from research to client delivery.</h2>
+            </div>
+          </div>
+
+          <div class="experience-list">
+            <article class="experience-item">
+              <header class="experience-header">
+                <h3 class="experience-role">
+                  <span class="experience-logo experience-logo--biokind" aria-hidden="true"></span>
+                  <span>Tech Lead • Biokind</span>
+                </h3>
+              </header>
+              <p class="experience-meta">Plainview, NY • Sep 2025 – Present</p>
+              <ul class="experience-desc">
+                <li>Designed an ETL workflow to clean over 14,000 donation entries and standardize demographic data using Python and Pandas.</li>
+                <li>Built a Streamlit analytics dashboard with Geopy and Matplotlib for Riverkeeper cleanup initiatives.</li>
+                <li>Containerized and deployed the analytics platform with Docker.</li>
+                <li>Directed a five-person engineering team from client requirements through technical delivery.</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <header class="experience-header">
+                <h3 class="experience-role">
+                  <span class="experience-logo experience-logo--purdue" aria-hidden="true"></span>
+                  <span>Robotics Research Assistant • Purdue Undergraduate Research</span>
+                </h3>
+              </header>
+              <p class="experience-meta">West Lafayette, IN • Sep 2024 – Jul 2025</p>
+              <ul class="experience-desc">
+                <li>Implemented mobile manipulation workflows for a Mobile ALOHA robot using ROS, Python, and Gazebo.</li>
+                <li>Built a voice-command pipeline tied to R-CNN object detection for faster target identification.</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <header class="experience-header">
+                <h3 class="experience-role">
+                  <span class="experience-logo experience-logo--purdue" aria-hidden="true"></span>
+                  <span>Chief Social Officer • Purdue Hackers (Indianapolis)</span>
+                </h3>
+              </header>
+              <p class="experience-meta">Indianapolis, IN • Sep 2024 – May 2025</p>
+              <ul class="experience-desc">
+                <li>Led a four-person engineering team to design and launch a responsive website using HTML, CSS, BEM, Flexbox, and media queries.</li>
+                <li>Integrated a Django backend to support dynamic content and server-side functionality.</li>
+              </ul>
+            </article>
+
+            <article class="experience-item">
+              <header class="experience-header">
+                <h3 class="experience-role">
+                  <span class="experience-logo experience-logo--pobot" aria-hidden="true"></span>
+                  <span>Head of Programming • POBOT (FRC Team 353)</span>
+                </h3>
+              </header>
+              <p class="experience-meta">Aug 2021 – Jun 2024</p>
+              <ul class="experience-desc">
+                <li>Developed tank-drive and swerve-drive subsystems with Java and WPILib for Bluetooth controller operation.</li>
+                <li>Improved autonomous navigation by designing motion-profiling and odometry-based pathing tools.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <aside class="work-sidebar">
+          <article class="preview-card">
+            <div class="preview-card__header">
+              <div>
+                <p class="eyebrow">Photography Preview</p>
+                <h3>Moments that also shape the design side.</h3>
+              </div>
+              <button class="text-link" type="button" data-open-tab="gallery">See gallery</button>
+            </div>
+
+            <div id="workPhotoGrid" class="work-photos"></div>
+          </article>
+
+          <article class="notes-card">
+            <p class="eyebrow">Right now</p>
+            <ul class="notes-list">
+              <li>Building analytics tooling and client-facing dashboards</li>
+              <li>Shipping hackathon MVPs with cleaner storytelling around the work</li>
+              <li>Keeping the portfolio closer to the pace of the GitHub profile</li>
+            </ul>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="tab-panel">
+    <div class="site-container wide">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Photography</p>
+          <h1>Visual notes from trips, city nights, and the in-between.</h1>
+        </div>
+        <p class="section-copy">
+          The gallery is built as a mosaic so the images can breathe a little more. Each
+          frame now has a title, caption, and description, and the site uses optimized image
+          sizes to keep it smooth.
+        </p>
+      </div>
+
+      <div class="gallery-shell">
+        <article class="gallery-spotlight">
+          <div class="gallery-spotlight__media">
+            <img id="galleryImage" class="gallery-image" alt="" />
+          </div>
+
+          <div class="gallery-spotlight__meta">
+            <div class="gallery-meta-line">
+              <span id="galleryLocation">Chicago, IL</span>
+              <span class="gallery-meta-line__dot" aria-hidden="true"></span>
+              <span id="galleryCamera">Fujifilm 100VI</span>
+            </div>
+
+            <h2 id="galleryTitle" class="gallery-title"></h2>
+            <p id="galleryCaption" class="gallery-caption"></p>
+            <p id="galleryDescription" class="gallery-description"></p>
+
+            <div class="gallery-controls">
+              <button id="galleryPrev" class="button button--secondary" type="button">
+                Previous
+              </button>
+              <button id="galleryNext" class="button button--secondary" type="button">
+                Next
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <div id="galleryGrid" class="mosaic-grid" aria-label="Photography mosaic"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="tab-panel">
+    <div class="site-container wide">
+      <div class="contact-shell">
+        <div class="contact-intro">
+          <p class="eyebrow">Contact</p>
+          <h1>Let’s make something thoughtful.</h1>
+          <p class="contact-intro__copy">
+            For internships, collaboration, or just a quick hello, email is still the best
+            route. The rest of the links are here if you want the fuller picture.
+          </p>
+
+          <a class="button button--primary" href="mailto:tk032606@gmail.com">Email Kevin</a>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:tk032606@gmail.com">
+            <span class="contact-card__icon" aria-hidden="true">@</span>
+            <div>
+              <p class="contact-card__title">Email</p>
+              <p class="contact-card__desc">Best for direct project conversations, internships, and quick check-ins.</p>
+              <p class="contact-card__meta">tk032606@gmail.com</p>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://github.com/kevit03" target="_blank" rel="noreferrer">
+            <span class="contact-card__icon" aria-hidden="true">GH</span>
+            <div>
+              <p class="contact-card__title">GitHub</p>
+              <p class="contact-card__desc">Pinned projects, source code, and the portfolio repository itself.</p>
+              <p class="contact-card__meta">github.com/kevit03</p>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://www.linkedin.com/in/kevin-tang1/" target="_blank" rel="noreferrer">
+            <span class="contact-card__icon" aria-hidden="true">in</span>
+            <div>
+              <p class="contact-card__title">LinkedIn</p>
+              <p class="contact-card__desc">Background, experience timeline, and the professional side of the story.</p>
+              <p class="contact-card__meta">linkedin.com/in/kevin-tang1</p>
+            </div>
+          </a>
+
+          <a
+            class="contact-card contact-card--spotify"
+            href="https://open.spotify.com/user/u0d2nlrisa61fou3uoeslyi27?si=41f4f7a479f74d80"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="contact-card__icon" aria-hidden="true">SP</span>
+            <div>
+              <p class="contact-card__title">Spotify</p>
+              <p class="contact-card__desc">A more personal signal: the profile behind most late-night edits, coding sessions, and photo sorting.</p>
+              <p class="contact-card__meta">Open profile</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="./app.js" defer></script>
+</body>
+</html>
