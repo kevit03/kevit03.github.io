@@ -2,9 +2,6 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
 const githubProfileFallback = {
-  name: "Kevin Tang",
-  bio: "Sophomore CS and DS @ New York University",
-  avatarUrl: "https://avatars.githubusercontent.com/u/74779238?v=4",
   publicRepos: 8,
   followers: 1,
   following: 8
@@ -14,8 +11,7 @@ const pinnedProjectFallbacks = [
   {
     slug: "kevit03/kevit03.github.io",
     title: "kevit03.github.io",
-    description:
-      "This portfolio site: a clean static build that blends work, photography, and contact details in one place.",
+    description: "This portfolio rebuild. Real photos, sharper art direction, and cleaner personal storytelling.",
     language: "CSS",
     liveUrl: "https://kevit03.github.io",
     ownerLabel: "Personal site"
@@ -23,25 +19,23 @@ const pinnedProjectFallbacks = [
   {
     slug: "aarithundi9/NYCF_BioKind",
     title: "NYCF_BioKind",
-    description:
-      "Analytics and data-cleaning work tied to BioKind and Riverkeeper, including donation data processing and dashboard-driven reporting.",
+    description: "Donation-data cleanup, ETL work, and reporting tools tied to BioKind and Riverkeeper.",
     language: "Python",
-    ownerLabel: "Collaboration"
+    ownerLabel: "Client work"
   },
   {
     slug: "aliabbaskhalfan/Indra-MVP",
     title: "Indra-MVP",
-    description:
-      "Indra — AI-powered SOP execution verification for regulated manufacturing. Cornell Health AI Hackathon MVP.",
+    description: "AI-powered SOP verification for regulated manufacturing. Built for a health AI hackathon.",
     language: "TypeScript",
-    ownerLabel: "Collaboration"
+    ownerLabel: "Hackathon"
   },
   {
     slug: "kevit03/Atlas---RoCathon",
     title: "Atlas---RoCathon",
-    description: "Atlas Brief - AI-guided creator screening for RoCathon.",
+    description: "AI-guided creator screening for RoCathon with product-minded MVP execution.",
     language: "JavaScript",
-    ownerLabel: "Pinned repo"
+    ownerLabel: "MVP"
   }
 ];
 
@@ -57,171 +51,58 @@ function photo(fileName, details) {
     description: details.description,
     location: details.location,
     camera: details.camera,
-    alt: details.alt,
-    layout: details.layout || "standard",
-    preview: Boolean(details.preview)
+    alt: details.alt
   };
 }
 
-// To add a new photo later:
-// 1. Drop the original file into /images
-// 2. Run ./scripts/optimize-images.sh
-// 3. Add one new photo(...) entry below
 const galleryData = [
-  photo("image1.JPG", {
-    title: "Desert Welcome",
-    caption: "Las Vegas, Nevada • 2025",
-    description:
-      "A tighter frame on the Las Vegas sign that lets the palms and storefronts do some of the scene-setting instead of treating it like a postcard.",
-    location: "Las Vegas, NV",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "The Welcome to Fabulous Las Vegas sign framed by palm trees and storefronts.",
-    layout: "tall"
-  }),
-  photo("image2.JPG", {
-    title: "After Rain",
-    caption: "Zion National Park, Utah • 2025",
-    description:
-      "Cloud cover hangs low over the canyon walls and softens the whole landscape, which makes the red earth feel quieter than usual.",
-    location: "Zion National Park, UT",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "Mist settling over Zion canyon cliffs after rain.",
-    layout: "feature",
-    preview: true
-  }),
-  photo("image3.JPG", {
-    title: "Bowling Night",
-    caption: "Hackensack, New Jersey • 2026",
-    description:
-      "More about the pause than the throw itself, with everyone locked on the lane under the glow of the scoreboards.",
-    location: "Hackensack, NJ",
-    camera: "Fujifilm 100VI",
-    alt: "Friends standing beside bowling lanes and watching a turn in progress.",
-    layout: "wide"
-  }),
-  photo("image4.JPG", {
-    title: "Rosetta Table",
-    caption: "Manhattan, New York • 2026",
-    description:
-      "A close food frame that keeps the light warm and the tabletop simple, so the pastries feel like the whole story.",
+  photo("image13.jpg", {
+    title: "Cue Up",
+    caption: "Manhattan, New York",
+    description: "A portrait built around the room, the blue felt, and the pause right before the shot.",
     location: "Manhattan, NY",
     camera: "Fujifilm 100VI",
-    alt: "Pastries from Rosetta Bakery on a tray over a wooden table.",
-    layout: "standard"
-  }),
-  photo("image5.JPG", {
-    title: "Waterfront Pause",
-    caption: "Secaucus, New Jersey • 2026",
-    description:
-      "A quiet portrait from behind, with the skyline pushed into soft distance and the subject carrying the whole frame.",
-    location: "Secaucus, NJ",
-    camera: "Fujifilm 100VI",
-    alt: "A person looking out over a waterfront at night while holding a phone.",
-    layout: "wide"
-  }),
-  photo("image6.JPG", {
-    title: "Snow Session",
-    caption: "Manhattan, New York • 2026",
-    description:
-      "The pianist in Washington Square Park turns into a winter scene more than a performance shot, with the snow doing as much work as the subject.",
-    location: "Manhattan, NY",
-    camera: "Fujifilm 100VI",
-    alt: "A pianist playing an upright piano outdoors in a snowy park.",
-    layout: "large"
+    alt: "A person lining up a shot at a pool table in a dim billiards hall."
   }),
   photo("image7.JPG", {
     title: "Canyon Light",
-    caption: "Grand Canyon, Arizona • 2025",
-    description:
-      "This frame leans into the scale of the canyon and the open sky, keeping the horizon broad and the texture layered.",
+    caption: "Grand Canyon, Arizona",
+    description: "Big scale, broad sky, and enough space for the landscape to feel slow.",
     location: "Grand Canyon, AZ",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "A wide view of the Grand Canyon under streaked clouds.",
-    layout: "feature",
-    preview: true
-  }),
-  photo("image8.JPG", {
-    title: "Strip Garden",
-    caption: "Las Vegas, Nevada • 2025",
-    description:
-      "Vegas can feel overwhelming, so this one works better by catching the softer side of it: water, flowers, palms, and one bold structure.",
-    location: "Las Vegas, NV",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "A futuristic building and garden pond on the Las Vegas Strip.",
-    layout: "wide"
-  }),
-  photo("image9.JPG", {
-    title: "Gorilla Study",
-    caption: "Bronx, New York • 2026",
-    description:
-      "The image lands because the gorilla feels almost contemplative, with the eye contact doing most of the work.",
-    location: "Bronx, NY",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "Close-up of a gorilla looking toward the camera in an enclosure.",
-    layout: "tall"
-  }),
-  photo("image10.JPG", {
-    title: "White Manna",
-    caption: "Hackensack, New Jersey • 2026",
-    description:
-      "Neon signage, overcast dusk, and a slightly tilted composition that keeps the retro feeling intact.",
-    location: "Hackensack, NJ",
-    camera: "Fujifilm 100VI",
-    alt: "The White Manna Hamburgers neon sign glowing at dusk.",
-    layout: "standard"
+    camera: "Sony A6400",
+    alt: "A wide view of the Grand Canyon under streaked clouds."
   }),
   photo("image11.JPG", {
     title: "River Sunset",
-    caption: "Chicago, Illinois • 2026",
-    description:
-      "A vertical city frame where the sunset becomes a thin column of light between buildings and the river carries it downward.",
+    caption: "Chicago, Illinois",
+    description: "A vertical city frame where the light drops between buildings and stretches down the river.",
     location: "Chicago, IL",
     camera: "iPhone 14 Pro",
-    alt: "Sunset light reflecting on the Chicago River between downtown buildings.",
-    layout: "tall",
-    preview: true
-  }),
-  photo("image12.JPG", {
-    title: "Chicago Glow",
-    caption: "Chicago, Illinois • 2026",
-    description:
-      "Street-level skyline light, held a little darker so the sky keeps its warmth and the towers stay crisp.",
-    location: "Chicago, IL",
-    camera: "iPhone 14 Pro",
-    alt: "Chicago street and skyline at sunset with warm light behind the buildings.",
-    layout: "large"
-  }),
-  photo("image13.jpg", {
-    title: "Cue Up",
-    caption: "Manhattan, New York • 2026",
-    description:
-      "A portrait that feels like it belongs to the room as much as the player, with the blue table pulling focus upward.",
-    location: "Manhattan, NY",
-    camera: "Fujifilm 100VI",
-    alt: "A person lining up a shot at a pool table in a dim billiards hall.",
-    layout: "tall",
-    preview: true
-  }),
-  photo("image14.jpg", {
-    title: "Rack Room",
-    caption: "Manhattan, New York • 2026",
-    description:
-      "Minimal, graphic, and a little cinematic. The crossed cues make it feel more composed than casual.",
-    location: "Manhattan, NY",
-    camera: "Fujifilm 100VI",
-    alt: "Crossed pool cues on a blue billiards table with a racked set of balls in the background.",
-    layout: "standard"
+    alt: "Sunset light reflecting on the Chicago River between downtown buildings."
   }),
   photo("image15.JPG", {
     title: "Blue Hour Blizzard",
-    caption: "Plainview, New York • 2026",
-    description:
-      "Snow at the quiet point of the evening, when the whole neighborhood goes still and the light turns almost monochrome.",
+    caption: "Plainview, New York",
+    description: "Everything gets quiet when the snow settles and the color drains down to blue.",
     location: "Plainview, NY",
-    camera: "Sony A6400 • 18-105 mm F4 G OSS",
-    alt: "A snowy suburban street at blue hour with a lamp post in the foreground.",
-    layout: "wide",
-    preview: true
+    camera: "Sony A6400",
+    alt: "A snowy suburban street at blue hour with a lamp post in the foreground."
+  }),
+  photo("image2.JPG", {
+    title: "After Rain",
+    caption: "Zion National Park, Utah",
+    description: "Cloud cover turns the canyon softer and quieter than expected.",
+    location: "Zion National Park, UT",
+    camera: "Sony A6400",
+    alt: "Mist settling over Zion canyon cliffs after rain."
+  }),
+  photo("image10.JPG", {
+    title: "White Manna",
+    caption: "Hackensack, New Jersey",
+    description: "Retro neon, overcast dusk, and a frame that stays a little loose on purpose.",
+    location: "Hackensack, NJ",
+    camera: "Fujifilm 100VI",
+    alt: "The White Manna Hamburgers neon sign glowing at dusk."
   })
 ];
 
@@ -236,44 +117,15 @@ function formatDate(dateValue) {
       day: "numeric",
       year: "numeric"
     }).format(new Date(dateValue));
-  } catch (error) {
+  } catch {
     return "";
-  }
-}
-
-function normalizeProfileBio(value) {
-  return (value || "")
-    .replace(/\bSophmore\b/g, "Sophomore")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function activateTab(tabId, { scroll = true } = {}) {
-  $$(".nav-link").forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.tab === tabId);
-  });
-
-  $$(".tab-panel").forEach((panel) => {
-    panel.classList.toggle("is-active", panel.id === tabId);
-  });
-
-  if (tabId === "projects") {
-    history.replaceState(null, "", window.location.pathname);
-  } else {
-    history.replaceState(null, "", `#${tabId}`);
-  }
-
-  if (scroll) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
 function renderProjects(projects) {
   const grid = $("#projectGrid");
 
-  if (!grid) {
-    return;
-  }
+  if (!grid) return;
 
   const fragment = document.createDocumentFragment();
 
@@ -286,7 +138,7 @@ function renderProjects(projects) {
 
     const label = document.createElement("span");
     label.className = "project__eyebrow";
-    label.textContent = project.ownerLabel || "Pinned repo";
+    label.textContent = project.ownerLabel || "Project";
 
     const body = document.createElement("div");
 
@@ -309,7 +161,7 @@ function renderProjects(projects) {
     const owner = project.slug.split("/")[0];
     const updated = project.updatedAt ? `Updated ${formatDate(project.updatedAt)}` : "";
 
-    [language, owner !== "kevit03" ? `Owner: ${owner}` : "Owner: kevit03", updated]
+    [language, owner !== "kevit03" ? `Owner ${owner}` : "Owner kevit03", updated]
       .filter(Boolean)
       .forEach((value) => {
         const pill = document.createElement("span");
@@ -321,7 +173,7 @@ function renderProjects(projects) {
     links.className = "project__links";
 
     const githubLink = document.createElement("a");
-    githubLink.className = "button button--secondary";
+    githubLink.className = "action";
     githubLink.href = project.githubUrl;
     githubLink.target = "_blank";
     githubLink.rel = "noreferrer";
@@ -330,7 +182,7 @@ function renderProjects(projects) {
 
     if (project.liveUrl) {
       const liveLink = document.createElement("a");
-      liveLink.className = "button button--secondary";
+      liveLink.className = "action";
       liveLink.href = project.liveUrl;
       liveLink.target = "_blank";
       liveLink.rel = "noreferrer";
@@ -371,123 +223,55 @@ async function hydratePinnedProjects() {
         githubUrl: data.html_url || `https://github.com/${project.slug}`,
         liveUrl: project.liveUrl || data.homepage || "",
         updatedAt: data.pushed_at || data.updated_at || "",
-        ownerLabel: data.owner?.login === "kevit03" ? "Pinned repo" : "Collaboration"
+        ownerLabel: data.owner?.login === "kevit03" ? project.ownerLabel : "Collaboration"
       };
     })
   );
 
-  const hydratedProjects = results.map((result, index) => {
-    if (result.status === "fulfilled") {
-      return result.value;
-    }
-
-    return fallbackProjects[index];
-  });
+  const hydratedProjects = results.map((result, index) =>
+    result.status === "fulfilled" ? result.value : fallbackProjects[index]
+  );
 
   renderProjects(hydratedProjects);
 }
 
-function renderWorkPhotos() {
-  const grid = $("#workPhotoGrid");
-
-  if (!grid) {
-    return;
-  }
-
-  const previewPhotos = galleryData.filter((photoItem) => photoItem.preview).slice(0, 4);
-  const fragment = document.createDocumentFragment();
-
-  previewPhotos.forEach((photoItem) => {
-    const figure = document.createElement("figure");
-    figure.className = "work-photo";
-
-    const image = document.createElement("img");
-    image.src = photoItem.thumb;
-    image.alt = photoItem.alt;
-    image.loading = "lazy";
-    image.decoding = "async";
-
-    const caption = document.createElement("figcaption");
-    caption.textContent = photoItem.caption;
-
-    figure.append(image, caption);
-    fragment.appendChild(figure);
-  });
-
-  grid.replaceChildren(fragment);
-}
-
 function updateGalleryTileState(index) {
   $$(".photo-tile").forEach((tile, tileIndex) => {
-    const isActive = tileIndex === index;
-    tile.classList.toggle("is-active", isActive);
-    tile.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
-function preloadNearbyImages(index) {
-  const neighborIndexes = [
-    (index + 1) % galleryData.length,
-    (index - 1 + galleryData.length) % galleryData.length
-  ];
-
-  neighborIndexes.forEach((neighborIndex) => {
-    const preloadImage = new Image();
-    preloadImage.src = galleryData[neighborIndex].src;
+    tile.classList.toggle("is-active", tileIndex === index);
+    tile.setAttribute("aria-pressed", String(tileIndex === index));
   });
 }
 
 function showImage(index) {
   const item = galleryData[index];
 
-  if (!item) {
-    return;
-  }
+  if (!item) return;
 
   currentIndex = index;
 
-  const galleryImage = $("#galleryImage");
-  const galleryTitle = $("#galleryTitle");
-  const galleryCaption = $("#galleryCaption");
-  const galleryDescription = $("#galleryDescription");
-  const galleryLocation = $("#galleryLocation");
-  const galleryCamera = $("#galleryCamera");
-
-  if (!galleryImage || !galleryTitle || !galleryCaption || !galleryDescription) {
-    return;
-  }
-
-  galleryImage.src = item.src;
-  galleryImage.alt = item.alt;
-  galleryTitle.textContent = item.title;
-  galleryCaption.textContent = item.caption;
-  galleryDescription.textContent = item.description;
-  galleryLocation.textContent = item.location;
-  galleryCamera.textContent = item.camera;
+  $("#galleryImage").src = item.src;
+  $("#galleryImage").alt = item.alt;
+  $("#galleryTitle").textContent = item.title;
+  $("#galleryCaption").textContent = item.caption;
+  $("#galleryDescription").textContent = item.description;
+  $("#galleryLocation").textContent = item.location;
+  $("#galleryCamera").textContent = item.camera;
 
   updateGalleryTileState(index);
-
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(() => preloadNearbyImages(index));
-  } else {
-    setTimeout(() => preloadNearbyImages(index), 0);
-  }
 }
 
 function renderGalleryGrid() {
   const grid = $("#galleryGrid");
 
-  if (!grid) {
-    return;
-  }
+  if (!grid) return;
 
   const fragment = document.createDocumentFragment();
 
   galleryData.forEach((item, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `photo-tile photo-tile--${item.layout}`;
-    button.setAttribute("aria-label", `${item.title} — ${item.caption}`);
+    button.className = "photo-tile";
+    button.setAttribute("aria-label", `${item.title} ${item.caption}`);
     button.setAttribute("aria-pressed", "false");
 
     const image = document.createElement("img");
@@ -510,30 +294,99 @@ function renderGalleryGrid() {
     meta.append(title, caption);
     button.append(image, meta);
 
-    button.addEventListener("click", () => {
-      showImage(index);
-    });
-
+    button.addEventListener("click", () => showImage(index));
     fragment.appendChild(button);
   });
 
   grid.replaceChildren(fragment);
 }
 
-async function hydrateGitHubProfile() {
-  const name = $("#profileName");
-  const bio = $("#profileBio");
-  const avatar = $("#profileAvatar");
-  const repos = $("#profileRepos");
-  const followers = $("#profileFollowers");
-  const following = $("#profileFollowing");
+function setupScrollSpy() {
+  const links = $$(".site-nav__link");
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
 
-  if (name) name.textContent = githubProfileFallback.name;
-  if (bio) bio.textContent = githubProfileFallback.bio;
-  if (avatar) avatar.src = githubProfileFallback.avatarUrl;
-  if (repos) repos.textContent = String(githubProfileFallback.publicRepos);
-  if (followers) followers.textContent = String(githubProfileFallback.followers);
-  if (following) following.textContent = String(githubProfileFallback.following);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible?.target?.id) return;
+
+      links.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${visible.target.id}`);
+      });
+    },
+    {
+      rootMargin: "-30% 0px -50% 0px",
+      threshold: [0.2, 0.4, 0.6]
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function setupIntro() {
+  const intro = $("#introScreen");
+  const canvas = $("#introCanvas");
+  const skip = $("#skipIntro");
+
+  if (!intro || !canvas) return;
+
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  let animationId = 0;
+  let columns = [];
+  const letters = "01KT<>[]{}#$%+*";
+  const fontSize = 16;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Array.from({ length: Math.floor(canvas.width / fontSize) }, () =>
+      Math.random() * canvas.height
+    );
+  }
+
+  function drawRain() {
+    context.fillStyle = "rgba(4, 7, 12, 0.14)";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.font = `${fontSize}px "IBM Plex Mono"`;
+
+    columns.forEach((y, index) => {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      const x = index * fontSize;
+
+      context.fillStyle = index % 11 === 0 ? "#ff6f4d" : "#92ff48";
+      context.fillText(text, x, y);
+      columns[index] = y > canvas.height + Math.random() * 150 ? 0 : y + fontSize;
+    });
+
+    animationId = window.requestAnimationFrame(drawRain);
+  }
+
+  function dismissIntro() {
+    intro.classList.add("is-hidden");
+    window.cancelAnimationFrame(animationId);
+  }
+
+  resizeCanvas();
+  drawRain();
+
+  window.addEventListener("resize", resizeCanvas);
+  skip?.addEventListener("click", dismissIntro);
+  window.setTimeout(dismissIntro, 2800);
+}
+
+async function hydrateGitHubSignals() {
+  const baseText = $(".quick-facts__item:nth-child(2) strong");
+
+  if (baseText) {
+    baseText.textContent = "Products, data, robotics";
+  }
 
   try {
     const response = await fetch("https://api.github.com/users/kevit03");
@@ -543,57 +396,25 @@ async function hydrateGitHubProfile() {
     }
 
     const data = await response.json();
+    const repos = data.public_repos ?? githubProfileFallback.publicRepos;
+    const followers = data.followers ?? githubProfileFallback.followers;
+    const following = data.following ?? githubProfileFallback.following;
 
-    if (name) name.textContent = (data.name || githubProfileFallback.name).trim();
-    if (bio) bio.textContent = normalizeProfileBio(data.bio) || githubProfileFallback.bio;
-    if (avatar) avatar.src = data.avatar_url || githubProfileFallback.avatarUrl;
-    if (repos) repos.textContent = String(data.public_repos ?? githubProfileFallback.publicRepos);
-    if (followers) followers.textContent = String(data.followers ?? githubProfileFallback.followers);
-    if (following) following.textContent = String(data.following ?? githubProfileFallback.following);
-  } catch (error) {
-    // Keep the fallback values when the API is unavailable.
+    if (baseText) {
+      baseText.textContent = `${repos} repos / ${followers} followers / ${following} following`;
+    }
+  } catch {
+    if (baseText) {
+      baseText.textContent = `${githubProfileFallback.publicRepos} repos / ${githubProfileFallback.followers} followers / ${githubProfileFallback.following} following`;
+    }
   }
-}
-
-function setupNavigation() {
-  $$(".nav-link").forEach((button) => {
-    button.addEventListener("click", () => {
-      activateTab(button.dataset.tab);
-    });
-  });
-
-  $$("[data-open-tab]").forEach((button) => {
-    button.addEventListener("click", () => {
-      activateTab(button.dataset.openTab);
-    });
-  });
-
-  $("#siteLogo")?.addEventListener("click", () => activateTab("projects"));
-
-  const initialHash = window.location.hash.replace("#", "");
-  const validTabs = new Set(["projects", "gallery", "contact"]);
-
-  if (validTabs.has(initialHash)) {
-    activateTab(initialHash, { scroll: false });
-  }
-}
-
-function setupGalleryControls() {
-  $("#galleryPrev")?.addEventListener("click", () => {
-    showImage((currentIndex - 1 + galleryData.length) % galleryData.length);
-  });
-
-  $("#galleryNext")?.addEventListener("click", () => {
-    showImage((currentIndex + 1) % galleryData.length);
-  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setupNavigation();
-  setupGalleryControls();
+  setupIntro();
+  setupScrollSpy();
   renderGalleryGrid();
-  renderWorkPhotos();
-  showImage(7);
-  hydrateGitHubProfile();
+  showImage(currentIndex);
+  hydrateGitHubSignals();
   hydratePinnedProjects();
 });
