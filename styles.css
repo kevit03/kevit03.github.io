@@ -183,8 +183,8 @@ button {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
-  gap: 36px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: start;
 }
 
@@ -261,22 +261,6 @@ button {
   margin: 0;
   font-size: 1rem;
   line-height: 1.6;
-}
-
-.hero-image img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  box-shadow: var(--shadow);
-}
-
-.hero-image figcaption {
-  margin-top: 12px;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.76rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 
 .section {
@@ -593,10 +577,6 @@ button {
 
   .gallery-spotlight {
     position: static;
-  }
-
-  .hero-image {
-    max-width: 620px;
   }
 }
 
