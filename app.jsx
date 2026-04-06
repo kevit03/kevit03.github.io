@@ -2,9 +2,9 @@
 const PORTFOLIO_CONFIG = {
   site: {
     name: "Kevin Tang",
-    title: "Software Engineer and Technical Builder",
+    title: "Software Engineer and Data Scientist",
     description:
-      "Software engineer focused on data products, internal tools, and fast prototypes with a clear point of view.",
+      "Software engineer focused on data products, tools, and prototypes ",
     email: "tk032606@gmail.com",
     resumeUrl: "./assets/kevin-tang-software-resume.pdf"
   },
@@ -12,7 +12,7 @@ const PORTFOLIO_CONFIG = {
     eyebrow: "Software Engineer / Data Systems / Product-Minded Builder",
     headline: "Studio-energy software work with an engineering core.",
     intro:
-      "I build analytics tools, ETL workflows, internal products, and hackathon-ready prototypes. I like sharp systems, clear interfaces, and work that feels intentional.",
+      "",
     note: "Built to be easy to edit. Every bit of personal content on this page lives in one config object.",
     badges: [
       { label: "Now", value: "NYU · Computer Science / Data Science" },
