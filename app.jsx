@@ -2,9 +2,9 @@
 const PORTFOLIO_CONFIG = {
   site: {
     name: "Kevin Tang",
-    title: "Software Engineer and Data Scientist",
+    title: "Software Engineer and Technical Builder",
     description:
-      "Software engineer focused on data products, tools, and prototypes ",
+      "Software engineer focused on data products, internal tools, fast prototypes, and photography with a clear point of view.",
     email: "tk032606@gmail.com",
     resumeUrl: "./assets/kevin-tang-software-resume.pdf"
   },
@@ -12,13 +12,14 @@ const PORTFOLIO_CONFIG = {
     eyebrow: "Software Engineer / Data Systems / Product-Minded Builder",
     headline: "Studio-energy software work with an engineering core.",
     intro:
-      "",
-    note: "Built to be easy to edit. Every bit of personal content on this page lives in one config object.",
+      "I build analytics tools, ETL workflows, internal products, and hackathon-ready prototypes. I care about systems that are useful, clear, and visually considered.",
+    note:
+      "Everything on this page is controlled by the config object at the top of the file, so updating content stays simple.",
     badges: [
       { label: "Now", value: "NYU · Computer Science / Data Science" },
       { label: "Base", value: "New York" },
       { label: "Focus", value: "Data, product, engineering" },
-      { label: "Mode", value: "Fast shipping, clean execution" }
+      { label: "Extra", value: "Photography" }
     ]
   },
   socials: [
@@ -73,27 +74,99 @@ const PORTFOLIO_CONFIG = {
       accent: "lilac"
     }
   ],
-  posts: [
+  photography: [
     {
-      title: "What Shipping Fast Actually Looks Like",
-      date: "April 2, 2026",
-      preview:
-        "A short note on building MVPs without letting the architecture collapse under the demo.",
-      href: "#"
+      title: "Cue Up",
+      location: "Manhattan, NY",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image13.jpg",
+      alt: "A person lining up a shot at a pool table in a dim billiards hall.",
+      accent: "coral"
     },
     {
-      title: "Designing ETL Workflows That Survive Real Data",
-      date: "March 18, 2026",
-      preview:
-        "Thoughts from building donor ingestion pipelines where the edge cases matter more than the happy path.",
-      href: "#"
+      title: "Canyon Light",
+      location: "Grand Canyon, AZ",
+      year: "2025",
+      camera: "Sony A6400",
+      src: "./images/web/image7.jpg",
+      alt: "A wide view of the Grand Canyon under streaked clouds.",
+      accent: "sun"
     },
     {
-      title: "How I Think About Technical Portfolios",
-      date: "March 5, 2026",
-      preview:
-        "A good portfolio should feel like a designed artifact, not a default template with repos pasted into it.",
-      href: "#"
+      title: "River Sunset",
+      location: "Chicago, IL",
+      year: "2026",
+      camera: "iPhone 14 Pro",
+      src: "./images/web/image11.jpg",
+      alt: "Sunset light reflecting on the Chicago River between downtown buildings.",
+      accent: "sky"
+    },
+    {
+      title: "Rosetta Table",
+      location: "Manhattan, NY",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image4.jpg",
+      alt: "Pastries from Rosetta Bakery on a tray over a wooden table.",
+      accent: "mint"
+    },
+    {
+      title: "White Manna",
+      location: "Hackensack, NJ",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image10.jpg",
+      alt: "The White Manna Hamburgers neon sign glowing at dusk.",
+      accent: "lilac"
+    },
+    {
+      title: "Blue Hour Blizzard",
+      location: "Plainview, NY",
+      year: "2026",
+      camera: "Sony A6400",
+      src: "./images/web/image15.jpg",
+      alt: "A snowy suburban street at blue hour with a lamp post in the foreground.",
+      accent: "sky"
+    }
+  ],
+  workExperience: [
+    {
+      company: "Biokind",
+      role: "Tech Lead",
+      date: "Sep 2025 - Present",
+      summary:
+        "Built data workflows and analytics tooling for donor and environmental reporting.",
+      bullets: [
+        "Architected a Python ETL pipeline to ingest, clean, and normalize 14k+ donor records.",
+        "Developed a Streamlit analytics platform with GeoPy and Matplotlib for map-based donor analysis.",
+        "Containerized the platform with Docker to reduce setup time and support reproducible deployments."
+      ],
+      accent: "mint"
+    },
+    {
+      company: "Purdue Undergraduate Research",
+      role: "Robotics Research Assistant",
+      date: "Sep 2024 - Jul 2025",
+      summary:
+        "Worked on mobile manipulation, perception, and command processing for robotics research.",
+      bullets: [
+        "Implemented mobile manipulation capabilities for a Mobile ALOHA robot using ROS, Python, and Gazebo.",
+        "Designed a perception and command pipeline combining voice command parsing with R-CNN object detection."
+      ],
+      accent: "sky"
+    },
+    {
+      company: "Purdue Hackers (Indianapolis)",
+      role: "Chief Social Officer / CSO",
+      date: "Sep 2024 - May 2025",
+      summary:
+        "Led frontend and website work for a public-facing organization site.",
+      bullets: [
+        "Led a four-engineer team to launch a responsive website using HTML, CSS, BEM, Flexbox, and media queries.",
+        "Implemented a Django backend for dynamic content delivery and server-side functionality."
+      ],
+      accent: "coral"
     }
   ],
   resume: {
@@ -101,11 +174,6 @@ const PORTFOLIO_CONFIG = {
     body:
       "Open the PDF directly or preview it below. Swap the file path here when you update your resume.",
     ctaLabel: "Open Resume"
-  },
-  dropZone: {
-    title: "Image Drop Zone",
-    body:
-      "Drop a PNG here and it will preview inline in the browser. No upload, no backend, no storage."
   }
 };
 
@@ -141,18 +209,20 @@ const customStyles = `
 
   .hero-panel,
   .section-card,
-  .post-card,
-  .drop-card,
-  .resume-frame {
+  .list-card,
+  .resume-frame,
+  .photo-frame,
+  .photo-thumb {
     position: relative;
     overflow: hidden;
   }
 
   .hero-panel::after,
   .section-card::after,
-  .post-card::after,
-  .drop-card::after,
-  .resume-frame::after {
+  .list-card::after,
+  .resume-frame::after,
+  .photo-frame::after,
+  .photo-thumb::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -195,19 +265,9 @@ const customStyles = `
     animation-play-state: paused;
   }
 
-  .dash-glow {
-    border-style: dashed;
-    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
-  }
-
-  .dash-glow.is-active {
-    border-color: #171717;
-    background-color: rgba(104, 211, 145, 0.18);
-    transform: scale(1.01);
-  }
-
-  .preview-shadow {
-    box-shadow: 0 16px 40px rgba(23, 23, 23, 0.14);
+  .photo-thumb-active {
+    transform: translateY(-4px) rotate(-1deg);
+    box-shadow: 0 18px 42px rgba(23, 23, 23, 0.18);
   }
 
   @keyframes fadeUp {
@@ -230,28 +290,23 @@ const customStyles = `
 const accentMap = {
   coral: {
     card: "bg-coral text-white",
-    soft: "bg-[#ffe0d7]",
-    border: "border-coral"
+    soft: "bg-[#ffe0d7]"
   },
   sky: {
     card: "bg-sky text-white",
-    soft: "bg-[#dbe7ff]",
-    border: "border-sky"
+    soft: "bg-[#dbe7ff]"
   },
   sun: {
     card: "bg-sun text-ink",
-    soft: "bg-[#fff1bf]",
-    border: "border-sun"
+    soft: "bg-[#fff1bf]"
   },
   mint: {
     card: "bg-mint text-ink",
-    soft: "bg-[#dbf4e3]",
-    border: "border-mint"
+    soft: "bg-[#dbf4e3]"
   },
   lilac: {
     card: "bg-lilac text-white",
-    soft: "bg-[#eee6ff]",
-    border: "border-lilac"
+    soft: "bg-[#eee6ff]"
   }
 };
 
@@ -317,140 +372,123 @@ function ProjectCard({ project, index }) {
   );
 }
 
-function BlogCard({ post, index }) {
+function ExperienceCard({ item, index }) {
+  const accent = accentMap[item.accent] || accentMap.sky;
   const rotation = index % 2 === 0 ? "sticker" : "sticker-alt";
 
   return (
-    <article className={`post-card fade-up fade-up-delay-${(index % 4) + 1} rounded-[2rem] border-2 border-ink/10 bg-white p-6 shadow-floaty`}>
+    <article className={`list-card fade-up fade-up-delay-${(index % 4) + 1} rounded-[2rem] border-2 border-ink/10 bg-white p-6 shadow-floaty`}>
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-ink/55">{post.date}</p>
-          <h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em] text-ink">{post.title}</h3>
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-ink/55">{item.date}</p>
+          <h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em] text-ink">
+            {item.role}
+          </h3>
+          <p className="mt-1 text-base font-semibold text-ink/70">{item.company}</p>
         </div>
-        <span className={`${rotation} rounded-full bg-ink px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white`}>
-          Note
+        <span className={`${rotation} rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] ${accent.card}`}>
+          Work
         </span>
       </div>
-      <p className="mt-4 max-w-2xl text-base leading-7 text-ink/70">{post.preview}</p>
-      <a
-        href={post.href}
-        className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-ink underline decoration-2 underline-offset-4"
-      >
-        Read preview
-        <span aria-hidden="true">→</span>
-      </a>
+      <p className="mt-4 max-w-3xl text-base leading-7 text-ink/70">{item.summary}</p>
+      <ul className="mt-5 space-y-3 text-sm leading-7 text-ink/72">
+        {item.bullets.map((bullet) => (
+          <li key={bullet} className="flex gap-3">
+            <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-ink" />
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }
 
-function DropZone({ config }) {
-  const [isOver, setIsOver] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
-    };
-  }, [previewUrl]);
-
-  function handleFile(file) {
-    if (!file) return;
-
-    if (file.type !== "image/png") {
-      setError("PNG files only.");
-      return;
-    }
-
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
-
-    setError("");
-    setFileName(file.name);
-    setPreviewUrl(URL.createObjectURL(file));
-  }
-
-  function handleDrop(event) {
-    event.preventDefault();
-    setIsOver(false);
-    handleFile(event.dataTransfer.files?.[0]);
-  }
-
-  function handleChange(event) {
-    handleFile(event.target.files?.[0]);
-  }
+function PhotographyGallery({ items }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selectedPhoto = items[selectedIndex] || items[0];
+  const selectedAccent = accentMap[selectedPhoto.accent] || accentMap.sky;
 
   return (
-    <section id="dropzone" className="scroll-mt-24 py-6">
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <section id="photography" className="scroll-mt-24 py-24">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Image Drop Zone</p>
-          <h2 className="mt-3 max-w-2xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
-            {config.title}
+          <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Photography Gallery</p>
+          <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
+            A gallery, not a side note.
           </h2>
         </div>
-        <p className="max-w-xl text-base leading-7 text-ink/70">{config.body}</p>
+        <p className="max-w-xl text-base leading-7 text-ink/70">
+          Same visual system, reworked into an interactive gallery with a large feature frame and selectable shots.
+        </p>
       </div>
 
-      <label
-        onDragEnter={(event) => {
-          event.preventDefault();
-          setIsOver(true);
-        }}
-        onDragLeave={(event) => {
-          event.preventDefault();
-          setIsOver(false);
-        }}
-        onDragOver={(event) => {
-          event.preventDefault();
-          setIsOver(true);
-        }}
-        onDrop={handleDrop}
-        className={`drop-card dash-glow flex min-h-[320px] cursor-pointer flex-col items-center justify-center rounded-[2.25rem] border-[3px] border-ink/20 bg-white p-8 text-center shadow-floaty ${isOver ? "is-active" : ""}`}
-      >
-        <input type="file" accept="image/png" onChange={handleChange} className="hidden" />
-
-        {!previewUrl ? (
-          <div className="fade-up">
-            <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-[2rem] bg-coral text-3xl text-white shadow-floaty">
-              PNG
-            </div>
-            <p className="font-display text-3xl font-extrabold tracking-[-0.05em] text-ink">
-              Drop a PNG here
-            </p>
-            <p className="mt-3 text-base text-ink/65">or click to browse from your computer</p>
-            {error ? <p className="mt-4 font-mono text-sm uppercase tracking-[0.16em] text-coral">{error}</p> : null}
+      <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="photo-frame fade-up rounded-[2.4rem] border-2 border-ink/10 bg-white p-4 shadow-floaty">
+          <div className={`mb-4 inline-flex rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] ${selectedAccent.card}`}>
+            {selectedPhoto.location} · {selectedPhoto.year}
           </div>
-        ) : (
-          <div className="w-full max-w-3xl fade-up">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-ink/55">Loaded locally</p>
-                <p className="mt-2 text-lg font-bold text-ink">{fileName}</p>
-              </div>
-              <span className="rounded-full bg-mint px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-ink">
-                Client-side only
-              </span>
-            </div>
+          <div className="overflow-hidden rounded-[1.7rem] bg-paper">
             <img
-              src={previewUrl}
-              alt={fileName}
-              className="preview-shadow max-h-[520px] w-full rounded-[2rem] border-2 border-ink/10 object-contain bg-paper p-4"
+              src={selectedPhoto.src}
+              alt={selectedPhoto.alt}
+              className="h-[540px] w-full object-cover"
             />
           </div>
-        )}
-      </label>
+          <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h3 className="font-display text-3xl font-extrabold tracking-[-0.05em] text-ink">
+                {selectedPhoto.title}
+              </h3>
+              <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-ink/55">
+                {selectedPhoto.camera}
+              </p>
+            </div>
+            <span className="sticker rounded-full border border-ink/10 bg-paper px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">
+              Selected Shot
+            </span>
+          </div>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {items.map((photo, index) => {
+            const accent = accentMap[photo.accent] || accentMap.sky;
+            const isActive = index === selectedIndex;
+
+            return (
+              <button
+                key={`${photo.title}-${photo.src}`}
+                type="button"
+                onClick={() => setSelectedIndex(index)}
+                className={`photo-thumb card-wobble fade-up fade-up-delay-${(index % 4) + 1} rounded-[1.8rem] border-2 border-ink/10 bg-white p-3 text-left shadow-floaty transition ${isActive ? "photo-thumb-active" : ""}`}
+              >
+                <div className="mb-3 overflow-hidden rounded-[1.3rem]">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="h-44 w-full object-cover"
+                  />
+                </div>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-lg font-extrabold tracking-[-0.04em] text-ink">{photo.title}</p>
+                    <p className="mt-1 text-sm text-ink/65">{photo.location}</p>
+                  </div>
+                  <span className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] ${accent.card}`}>
+                    {photo.year}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 }
 
 function App() {
   const config = PORTFOLIO_CONFIG;
-  const [year] = useState(() => new Date().getFullYear());
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     document.title = config.site.name;
@@ -466,7 +504,7 @@ function App() {
       "Internal tools",
       "Analytics products",
       "Hackathon prototypes",
-      "Studio-energy UI",
+      "Photography",
       "Systems with personality"
     ];
 
@@ -486,9 +524,9 @@ function App() {
             <nav className="hidden items-center gap-4 md:flex">
               {[
                 ["Projects", "#projects"],
-                ["Blog", "#blog"],
-                ["Resume", "#resume"],
-                ["Drop Zone", "#dropzone"]
+                ["Photography", "#photography"],
+                ["Experience", "#experience"],
+                ["Resume", "#resume"]
               ].map(([label, href]) => (
                 <a
                   key={href}
@@ -601,12 +639,14 @@ function App() {
             </div>
           </section>
 
-          <section id="blog" className="scroll-mt-24 py-6">
+          <PhotographyGallery items={config.photography} />
+
+          <section id="experience" className="scroll-mt-24 py-6">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Blog</p>
+                <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Work Experience</p>
                 <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
-                  Posts, notes, and build logs.
+                  Teams, roles, and shipped work.
                 </h2>
               </div>
               <span className="sticker rounded-full bg-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-white">
@@ -615,8 +655,8 @@ function App() {
             </div>
 
             <div className="grid gap-5">
-              {config.posts.map((post, index) => (
-                <BlogCard key={post.title} post={post} index={index} />
+              {config.workExperience.map((item, index) => (
+                <ExperienceCard key={`${item.company}-${item.role}`} item={item} index={index} />
               ))}
             </div>
           </section>
@@ -674,8 +714,6 @@ function App() {
               </div>
             </div>
           </section>
-
-          <DropZone config={config.dropZone} />
         </main>
 
         <footer className="border-t border-ink/10 bg-white/70">
