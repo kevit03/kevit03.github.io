@@ -11,8 +11,7 @@ const PORTFOLIO_CONFIG = {
   hero: {
     eyebrow: "Software Engineer / Data Systems / Product-Minded Builder",
     headline: "Studio-energy software work with an engineering core.",
-    intro:
-      "I build analytics tools, ETL workflows, internal products, and hackathon-ready prototypes. I care about systems that are useful, clear, and visually considered.",
+    intro: "",
     note:
       "Everything on this page is controlled by the config object at the top of the file, so updating content stays simple.",
     badges: [
@@ -171,8 +170,7 @@ const PORTFOLIO_CONFIG = {
   ],
   resume: {
     title: "Resume",
-    body:
-      "Open the PDF directly or preview it below. Swap the file path here when you update your resume.",
+    body: "",
     ctaLabel: "Open Resume"
   }
 };
@@ -265,9 +263,13 @@ const customStyles = `
     animation-play-state: paused;
   }
 
-  .photo-thumb-active {
-    transform: translateY(-4px) rotate(-1deg);
-    box-shadow: 0 18px 42px rgba(23, 23, 23, 0.18);
+  .photo-feature {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .photo-feature:hover {
+    transform: translateY(-6px) rotate(-0.6deg);
+    box-shadow: 0 22px 48px rgba(23, 23, 23, 0.18);
   }
 
   @keyframes fadeUp {
@@ -404,83 +406,50 @@ function ExperienceCard({ item, index }) {
 }
 
 function PhotographyGallery({ items }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const selectedPhoto = items[selectedIndex] || items[0];
-  const selectedAccent = accentMap[selectedPhoto.accent] || accentMap.sky;
-
   return (
     <section id="photography" className="scroll-mt-24 py-24">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div className="mb-8">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Photography Gallery</p>
           <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
-            A gallery, not a side note.
+            Photography
           </h2>
         </div>
-        <p className="max-w-xl text-base leading-7 text-ink/70">
-          Same visual system, reworked into an interactive gallery with a large feature frame and selectable shots.
-        </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="photo-frame fade-up rounded-[2.4rem] border-2 border-ink/10 bg-white p-4 shadow-floaty">
-          <div className={`mb-4 inline-flex rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] ${selectedAccent.card}`}>
-            {selectedPhoto.location} · {selectedPhoto.year}
-          </div>
-          <div className="overflow-hidden rounded-[1.7rem] bg-paper">
-            <img
-              src={selectedPhoto.src}
-              alt={selectedPhoto.alt}
-              className="h-[540px] w-full object-cover"
-            />
-          </div>
-          <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h3 className="font-display text-3xl font-extrabold tracking-[-0.05em] text-ink">
-                {selectedPhoto.title}
-              </h3>
-              <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-ink/55">
-                {selectedPhoto.camera}
-              </p>
-            </div>
-            <span className="sticker rounded-full border border-ink/10 bg-paper px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/70">
-              Selected Shot
-            </span>
-          </div>
-        </div>
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {items.map((photo, index) => {
+          const accent = accentMap[photo.accent] || accentMap.sky;
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {items.map((photo, index) => {
-            const accent = accentMap[photo.accent] || accentMap.sky;
-            const isActive = index === selectedIndex;
-
-            return (
-              <button
-                key={`${photo.title}-${photo.src}`}
-                type="button"
-                onClick={() => setSelectedIndex(index)}
-                className={`photo-thumb card-wobble fade-up fade-up-delay-${(index % 4) + 1} rounded-[1.8rem] border-2 border-ink/10 bg-white p-3 text-left shadow-floaty transition ${isActive ? "photo-thumb-active" : ""}`}
-              >
-                <div className="mb-3 overflow-hidden rounded-[1.3rem]">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="h-44 w-full object-cover"
-                  />
+          return (
+            <article
+              key={`${photo.title}-${photo.src}`}
+              className={`photo-feature photo-thumb fade-up fade-up-delay-${(index % 4) + 1} rounded-[2rem] border-2 border-ink/10 bg-white p-4 shadow-floaty`}
+            >
+              <div className="mb-4 overflow-hidden rounded-[1.5rem] bg-paper">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="h-[320px] w-full object-cover"
+                />
+              </div>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="font-display text-2xl font-extrabold tracking-[-0.04em] text-ink">
+                    {photo.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink/65">{photo.location}</p>
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/55">
+                    {photo.camera}
+                  </p>
                 </div>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-lg font-extrabold tracking-[-0.04em] text-ink">{photo.title}</p>
-                    <p className="mt-1 text-sm text-ink/65">{photo.location}</p>
-                  </div>
-                  <span className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] ${accent.card}`}>
-                    {photo.year}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
+                <span className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] ${accent.card}`}>
+                  {photo.year}
+                </span>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
@@ -552,9 +521,11 @@ function App() {
                 <span className="mt-3 block text-coral">{config.hero.headline}</span>
               </h1>
 
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/72">
-                {config.hero.intro}
-              </p>
+              {config.hero.intro ? (
+                <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/72">
+                  {config.hero.intro}
+                </p>
+              ) : null}
 
               <div className="mt-8 flex flex-wrap gap-3">
                 {config.socials.map((social, index) => {
@@ -624,12 +595,9 @@ function App() {
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Projects Gallery</p>
                 <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
-                  Card-based work, built to feel designed.
+                  Projects
                 </h2>
               </div>
-              <p className="max-w-xl text-base leading-7 text-ink/70">
-                Each card pulls from the same content config, so updating project details is just data entry.
-              </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -646,7 +614,7 @@ function App() {
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">Work Experience</p>
                 <h2 className="mt-3 max-w-3xl font-display text-4xl font-extrabold tracking-[-0.06em] text-ink md:text-5xl">
-                  Teams, roles, and shipped work.
+                  Experience
                 </h2>
               </div>
               <span className="sticker rounded-full bg-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-white">
@@ -688,7 +656,9 @@ function App() {
                 <h3 className="mt-6 font-display text-3xl font-extrabold tracking-[-0.05em] text-ink">
                   {config.resume.title}
                 </h3>
-                <p className="mt-4 text-base leading-7 text-ink/70">{config.resume.body}</p>
+                {config.resume.body ? (
+                  <p className="mt-4 text-base leading-7 text-ink/70">{config.resume.body}</p>
+                ) : null}
                 <div className="mt-8 space-y-3">
                   <a
                     href={config.site.resumeUrl}
