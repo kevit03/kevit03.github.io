@@ -75,13 +75,58 @@ const PORTFOLIO_CONFIG = {
   ],
   photography: [
     {
-      title: "Cue Up",
+      title: "Desert Welcome",
+      location: "Las Vegas, NV",
+      year: "2025",
+      camera: "Sony A6400",
+      src: "./images/web/image1.jpg",
+      alt: "The Welcome to Fabulous Las Vegas sign framed by palm trees and storefronts.",
+      accent: "coral"
+    },
+    {
+      title: "After Rain",
+      location: "Zion National Park, UT",
+      year: "2025",
+      camera: "Sony A6400",
+      src: "./images/web/image2.jpg",
+      alt: "Mist settling over Zion canyon cliffs after rain.",
+      accent: "mint"
+    },
+    {
+      title: "Bowling Night",
+      location: "Hackensack, NJ",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image3.jpg",
+      alt: "Friends standing beside bowling lanes and watching a turn in progress.",
+      accent: "sun"
+    },
+    {
+      title: "Rosetta Table",
       location: "Manhattan, NY",
       year: "2026",
       camera: "Fujifilm 100VI",
-      src: "./images/web/image13.jpg",
-      alt: "A person lining up a shot at a pool table in a dim billiards hall.",
-      accent: "coral"
+      src: "./images/web/image4.jpg",
+      alt: "Pastries from Rosetta Bakery on a tray over a wooden table.",
+      accent: "mint"
+    },
+    {
+      title: "Waterfront Pause",
+      location: "Secaucus, NJ",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image5.jpg",
+      alt: "A person looking out over a waterfront at night while holding a phone.",
+      accent: "lilac"
+    },
+    {
+      title: "Snow Session",
+      location: "Manhattan, NY",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image6.jpg",
+      alt: "A pianist playing an upright piano outdoors in a snowy park.",
+      accent: "sky"
     },
     {
       title: "Canyon Light",
@@ -93,6 +138,24 @@ const PORTFOLIO_CONFIG = {
       accent: "sun"
     },
     {
+      title: "Strip Garden",
+      location: "Las Vegas, NV",
+      year: "2025",
+      camera: "Sony A6400",
+      src: "./images/web/image8.jpg",
+      alt: "A futuristic building and garden pond on the Las Vegas Strip.",
+      accent: "sky"
+    },
+    {
+      title: "Gorilla Study",
+      location: "Bronx, NY",
+      year: "2026",
+      camera: "Sony A6400",
+      src: "./images/web/image9.jpg",
+      alt: "Close-up of a gorilla looking toward the camera in an enclosure.",
+      accent: "lilac"
+    },
+    {
       title: "River Sunset",
       location: "Chicago, IL",
       year: "2026",
@@ -102,12 +165,30 @@ const PORTFOLIO_CONFIG = {
       accent: "sky"
     },
     {
-      title: "Rosetta Table",
+      title: "Chicago Glow",
+      location: "Chicago, IL",
+      year: "2026",
+      camera: "iPhone 14 Pro",
+      src: "./images/web/image12.jpg",
+      alt: "Chicago street and skyline at sunset with warm light behind the buildings.",
+      accent: "coral"
+    },
+    {
+      title: "Cue Up",
       location: "Manhattan, NY",
       year: "2026",
       camera: "Fujifilm 100VI",
-      src: "./images/web/image4.jpg",
-      alt: "Pastries from Rosetta Bakery on a tray over a wooden table.",
+      src: "./images/web/image13.jpg",
+      alt: "A person lining up a shot at a pool table in a dim billiards hall.",
+      accent: "coral"
+    },
+    {
+      title: "Rack Room",
+      location: "Manhattan, NY",
+      year: "2026",
+      camera: "Fujifilm 100VI",
+      src: "./images/web/image14.jpg",
+      alt: "Crossed pool cues on a blue billiards table with a racked set of balls in the background.",
       accent: "mint"
     },
     {
@@ -406,6 +487,32 @@ function ExperienceCard({ item, index }) {
 }
 
 function PhotographyGallery({ items }) {
+  const pageSize = 6;
+  const [page, setPage] = useState(0);
+  const [zoomIndex, setZoomIndex] = useState(null);
+  const pageCount = Math.ceil(items.length / pageSize);
+  const start = page * pageSize;
+  const visibleItems = items.slice(start, start + pageSize);
+  const zoomedPhoto = zoomIndex === null ? null : items[zoomIndex];
+
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setZoomIndex(null);
+      }
+    }
+
+    if (zoomIndex !== null) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [zoomIndex]);
+
   return (
     <section id="photography" className="scroll-mt-24 py-24">
       <div className="mb-8">
@@ -418,13 +525,16 @@ function PhotographyGallery({ items }) {
       </div>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {items.map((photo, index) => {
+        {visibleItems.map((photo, index) => {
           const accent = accentMap[photo.accent] || accentMap.sky;
+          const globalIndex = start + index;
 
           return (
-            <article
+            <button
               key={`${photo.title}-${photo.src}`}
-              className={`photo-feature photo-thumb fade-up fade-up-delay-${(index % 4) + 1} rounded-[2rem] border-2 border-ink/10 bg-white p-4 shadow-floaty`}
+              type="button"
+              onClick={() => setZoomIndex(globalIndex)}
+              className={`photo-feature photo-thumb fade-up fade-up-delay-${(index % 4) + 1} rounded-[2rem] border-2 border-ink/10 bg-white p-4 text-left shadow-floaty`}
             >
               <div className="mb-4 overflow-hidden rounded-[1.5rem] bg-paper">
                 <img
@@ -447,10 +557,109 @@ function PhotographyGallery({ items }) {
                   {photo.year}
                 </span>
               </div>
-            </article>
+            </button>
           );
         })}
       </div>
+
+      {pageCount > 1 ? (
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-ink/55">
+            Showing {start + 1}-{Math.min(start + pageSize, items.length)} of {items.length}
+          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setPage((current) => Math.max(current - 1, 0))}
+              disabled={page === 0}
+              className="rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Previous 6
+            </button>
+            <div className="flex gap-2">
+              {Array.from({ length: pageCount }, (_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setPage(index)}
+                  className={`h-3 w-3 rounded-full border border-ink/15 ${page === index ? "bg-ink" : "bg-white"}`}
+                  aria-label={`Go to gallery page ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setPage((current) => Math.min(current + 1, pageCount - 1))}
+              disabled={page === pageCount - 1}
+              className="rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Next 6
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {zoomedPhoto ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 px-4 py-6 backdrop-blur-sm"
+          onClick={() => setZoomIndex(null)}
+        >
+          <div
+            className="w-full max-w-6xl rounded-[2rem] border-2 border-white/20 bg-[#fff7ed] p-4 shadow-floaty"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="font-display text-3xl font-extrabold tracking-[-0.05em] text-ink">
+                  {zoomedPhoto.title}
+                </p>
+                <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-ink/55">
+                  {zoomedPhoto.location} · {zoomedPhoto.camera} · {zoomedPhoto.year}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setZoomIndex((current) =>
+                      current === null ? 0 : (current - 1 + items.length) % items.length
+                    )
+                  }
+                  className="rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink"
+                >
+                  Prev
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setZoomIndex((current) =>
+                      current === null ? 0 : (current + 1) % items.length
+                    )
+                  }
+                  className="rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink"
+                >
+                  Next
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setZoomIndex(null)}
+                  className="rounded-full border border-ink bg-ink px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[1.5rem] bg-white">
+              <img
+                src={zoomedPhoto.src}
+                alt={zoomedPhoto.alt}
+                className="max-h-[78vh] w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
