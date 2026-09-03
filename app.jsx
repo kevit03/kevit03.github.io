@@ -9,8 +9,8 @@ const PORTFOLIO_CONFIG = {
     resumeUrl: "./assets/kevin-tang-software-resume.pdf"
   },
   hero: {
-    eyebrow: "Software Engineer / Data Systems / Product-Minded Builder",
-    headline: "Studio-energy software work with an engineering core.",
+    eyebrow: "Junior @ NYU · Software Engineer",
+    headline: "",
     intro: "",
     note:
       "Everything on this page is controlled by the config object at the top of the file, so updating content stays simple.",
@@ -26,51 +26,72 @@ const PORTFOLIO_CONFIG = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/kevin-tang1/", color: "coral" },
     { label: "Email", href: "mailto:tk032606@gmail.com", color: "mint" }
   ],
-  projects: [
+  // Projects are fetched from GitHub at runtime — see useGitHubProjects() below.
+  // Each entry maps a display name to a GitHub repo.  The GitHub API fills in
+  // the description and language list automatically.
+  githubProjects: [
     {
       name: "Indra",
       kicker: "Compliance AI",
-      description:
+      repo: "aliabbaskhalfan/Indra-MVP",
+      fallbackDescription:
         "AI SOP compliance monitoring for regulated manufacturing workflows.",
-      stack: ["Python", "YOLOv8", "GPT-4o", "Computer Vision"],
-      links: [
-        { label: "Repo", href: "https://github.com/aliabbaskhalfan/Indra-MVP" }
-      ],
+      fallbackStack: ["Python", "YOLOv8", "GPT-4o", "Computer Vision"],
       accent: "coral"
     },
     {
       name: "Riverkeepers Donor Intelligence Platform",
       kicker: "Geospatial Analytics",
-      description:
+      repo: "aarithundi9/NYCF_BioKind",
+      fallbackDescription:
         "Interactive donor analysis platform for nonprofit engagement and reporting.",
-      stack: ["Python", "Leaflet.js", "Streamlit", "JavaScript"],
-      links: [
-        { label: "Repo", href: "https://github.com/aarithundi9/NYCF_BioKind" }
-      ],
+      fallbackStack: ["Python", "Leaflet.js", "Streamlit", "JavaScript"],
       accent: "sky"
     },
     {
       name: "Atlas",
       kicker: "Creator Screening",
-      description:
+      repo: "kevit03/Atlas---RoCathon",
+      fallbackDescription:
         "Creator screening and matching workflow built for RoCathon.",
-      stack: ["JavaScript", "Product Design", "Workflow Tools"],
-      links: [
-        { label: "Repo", href: "https://github.com/kevit03/Atlas---RoCathon" }
-      ],
+      fallbackStack: ["JavaScript", "Product Design", "Workflow Tools"],
       accent: "sun"
+    },
+    {
+      name: "Tracker",
+      kicker: "Task Tracking",
+      repo: "kevit03/tracker",
+      fallbackDescription:
+        "A lightweight task tracking app.",
+      fallbackStack: ["JavaScript"],
+      accent: "mint"
+    },
+    {
+      name: "Video CV Annotator",
+      kicker: "Computer Vision Tool",
+      repo: "kevit03/video-cv-annotator",
+      fallbackDescription:
+        "Video annotation tool for computer vision workflows.",
+      fallbackStack: ["TypeScript"],
+      accent: "lilac"
+    },
+    {
+      name: "Calendai",
+      kicker: "AI Calendar",
+      repo: "kevit03/Calendai",
+      fallbackDescription:
+        "Easy way to update your calendar (blog functionality).",
+      fallbackStack: ["TypeScript"],
+      accent: "coral"
     },
     {
       name: "Portfolio System",
       kicker: "Personal Brand",
-      description:
+      repo: "kevit03/kevit03.github.io",
+      fallbackDescription:
         "A playful single-page portfolio built to keep content updates simple and fast.",
-      stack: ["React", "Tailwind", "Static Frontend"],
-      links: [
-        { label: "Repo", href: "https://github.com/kevit03/kevit03.github.io" },
-        { label: "Resume", href: "./assets/kevin-tang-software-resume.pdf" }
-      ],
-      accent: "lilac"
+      fallbackStack: ["React", "Tailwind", "Static Frontend"],
+      accent: "sky"
     }
   ],
   photography: [
@@ -393,6 +414,74 @@ const accentMap = {
   }
 };
 
+// Fetches live repo data from GitHub for each project in the config.
+// Falls back to the config's fallback values on error or slow networks.
+function useGitHubProjects(githubProjects) {
+  const [projects, setProjects] = useState(() =>
+    githubProjects.map((p) => ({
+      name: p.name,
+      kicker: p.kicker,
+      description: p.fallbackDescription,
+      stack: p.fallbackStack,
+      links: [{ label: "Repo", href: `https://github.com/${p.repo}` }],
+      accent: p.accent
+    }))
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function fetchAll() {
+      const results = await Promise.all(
+        githubProjects.map(async (p) => {
+          try {
+            const [repoRes, langRes] = await Promise.all([
+              fetch(`https://api.github.com/repos/${p.repo}`),
+              fetch(`https://api.github.com/repos/${p.repo}/languages`)
+            ]);
+            const repoData = repoRes.ok ? await repoRes.json() : null;
+            const langData = langRes.ok ? await langRes.json() : null;
+
+            const description =
+              (repoData && repoData.description) || p.fallbackDescription;
+            const stack =
+              langData && Object.keys(langData).length > 0
+                ? Object.keys(langData)
+                : p.fallbackStack;
+
+            return {
+              name: p.name,
+              kicker: p.kicker,
+              description,
+              stack,
+              links: [{ label: "Repo", href: `https://github.com/${p.repo}` }],
+              accent: p.accent
+            };
+          } catch {
+            return {
+              name: p.name,
+              kicker: p.kicker,
+              description: p.fallbackDescription,
+              stack: p.fallbackStack,
+              links: [{ label: "Repo", href: `https://github.com/${p.repo}` }],
+              accent: p.accent
+            };
+          }
+        })
+      );
+
+      if (!cancelled) {
+        setProjects(results);
+      }
+    }
+
+    fetchAll();
+    return () => { cancelled = true; };
+  }, []);
+
+  return projects;
+}
+
 function ProjectCard({ project, index }) {
   const accent = accentMap[project.accent] || accentMap.sky;
 
@@ -667,6 +756,7 @@ function PhotographyGallery({ items }) {
 function App() {
   const config = PORTFOLIO_CONFIG;
   const year = new Date().getFullYear();
+  const projects = useGitHubProjects(config.githubProjects);
 
   useEffect(() => {
     document.title = config.site.name;
@@ -727,7 +817,9 @@ function App() {
 
               <h1 className="max-w-4xl font-display text-[3.4rem] font-extrabold leading-[0.92] tracking-[-0.08em] text-ink md:text-[5.6rem]">
                 {config.site.name}
-                <span className="mt-3 block text-coral">{config.hero.headline}</span>
+                {config.hero.headline ? (
+                  <span className="mt-3 block text-coral">{config.hero.headline}</span>
+                ) : null}
               </h1>
 
               {config.hero.intro ? (
@@ -754,17 +846,8 @@ function App() {
             </div>
 
             <div className="relative grid gap-4">
-              <div className="hero-panel fade-up fade-up-delay-2 rounded-[2.2rem] border-2 border-ink/10 bg-white p-6 shadow-floaty">
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <p className="font-mono text-xs uppercase tracking-[0.28em] text-ink/55">
-                    Quick Notes
-                  </p>
-                  <span className="sticker-alt rounded-full bg-sky px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-white">
-                    Live
-                  </span>
-                </div>
-                <p className="max-w-sm text-lg leading-8 text-ink/75">{config.hero.note}</p>
-              </div>
+
+
 
               <div className="grid gap-4 sm:grid-cols-2">
                 {config.hero.badges.map((badge, index) => {
@@ -810,7 +893,7 @@ function App() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
-              {config.projects.map((project, index) => (
+              {projects.map((project, index) => (
                 <ProjectCard key={project.name} project={project} index={index} />
               ))}
             </div>
